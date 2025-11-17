@@ -177,12 +177,13 @@ const UserManagementPage = () => {
 
   return (
     <div className="user-management-page">
-      <div className="page-header">
-        <h1 className="page-title">Quản lý người dùng</h1>
-        <p className="page-subtitle">Quản lý tài khoản người dùng và phân quyền hệ thống</p>
+      <div className="dashboard-header">
+        <h1 className="dashboard-title">Quản lý người dùng</h1>
+        <p className="dashboard-subtitle">Quản lý tài khoản người dùng và phân quyền hệ thống</p>
       </div>
-
-      {/* Statistics Cards */}
+      
+      <div className="dashboard-content">
+        {/* Statistics Cards */}
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon blue">
@@ -225,19 +226,20 @@ const UserManagementPage = () => {
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="controls-section">
-        <div className="controls-left">
-          <div className="search-box">
-            <Search size={16} />
-            <input
-              type="text"
-              placeholder="Tìm kiếm người dùng..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          
+      {/* Search Controls */}
+      <div className="search-controls-card">
+        <div className="search-input-wrapper">
+          <Search size={20} className="search-icon" />
+          <input
+            type="text"
+            placeholder="Tìm kiếm người dùng..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+        
+        <div className="controls-right">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
@@ -248,16 +250,14 @@ const UserManagementPage = () => {
             <option value="locked">Bị khóa</option>
           </select>
           
-
+          <button 
+            className="btn btn-primary"
+            onClick={() => setShowAddModal(true)}
+          >
+            <Plus size={16} />
+            Thêm người dùng
+          </button>
         </div>
-        
-        <button 
-          className="btn primary"
-          onClick={() => setShowAddModal(true)}
-        >
-          <Plus size={16} />
-          Thêm người dùng
-        </button>
       </div>
 
       {/* Users Table */}
@@ -584,6 +584,7 @@ const UserManagementPage = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

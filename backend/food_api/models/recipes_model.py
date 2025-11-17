@@ -91,6 +91,7 @@ def create(data: dict):
 
 
 def update(recipe_id: int, data: dict):
+    print(f"[DEBUG] Updating recipe {recipe_id} with data: {data}")
     fields = []
     vals = []
     allowed = ['food_id', 'title', 'instructions', 'video_url', 'prep_time_minutes', 'cook_time_minutes', 'author_id']
@@ -98,23 +99,32 @@ def update(recipe_id: int, data: dict):
         if k in data:
             if k in ('food_id', 'prep_time_minutes', 'cook_time_minutes', 'author_id'):
                 try:
-                    vals.append(int(data.get(k)))
-                except Exception:
+                    val = int(data.get(k)) if data.get(k) is not None and data.get(k) != '' else None
+                    vals.append(val)
+                    print(f"[DEBUG] Field {k}: {data.get(k)} -> {val}")
+                except Exception as e:
+                    print(f"[DEBUG] Failed to convert {k}: {data.get(k)} -> None ({e})")
                     vals.append(None)
             else:
                 vals.append(data.get(k))
+                print(f"[DEBUG] Field {k}: {data.get(k)}")
             fields.append(f"{k}=%s")
 
     if not fields:
+        print("[DEBUG] No fields to update")
         return False
 
     sql = "UPDATE recipes SET " + ", ".join(fields) + " WHERE recipe_id=%s"
     vals.append(recipe_id)
+    print(f"[DEBUG] SQL: {sql}")
+    print(f"[DEBUG] Values: {vals}")
+    
     conn = get_connection()
     cur = conn.cursor()
     cur.execute(sql, tuple(vals))
     conn.commit()
     changed = cur.rowcount
+    print(f"[DEBUG] Rows changed: {changed}")
     cur.close(); conn.close()
     return changed > 0
 

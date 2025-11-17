@@ -13,21 +13,30 @@ async function request(path, { method = 'GET', body = null, headers = {}, raw = 
   if (token) h['Authorization'] = `Bearer ${token}`;
   if (body && !(body instanceof FormData) && !raw) h['Content-Type'] = 'application/json';
 
+  console.log(`API Request: ${method} ${url}`, { body, headers: h });
+
   const resp = await fetch(url, {
     method,
     headers: h,
     body: body && !(body instanceof FormData) && !raw ? JSON.stringify(body) : body,
   });
 
+  console.log(`API Response: ${resp.status} ${resp.statusText}`, resp);
+
   if (!resp.ok) {
     const ct = resp.headers.get('Content-Type') || '';
     let err = await resp.text();
     try { if (ct.includes('application/json')) err = JSON.stringify(await resp.json()); } catch(e){}
+    console.error(`API Error: ${resp.status}`, err);
     throw new Error(`HTTP ${resp.status} ${err}`);
   }
 
   const contentType = resp.headers.get('Content-Type') || '';
-  if (contentType.includes('application/json')) return await resp.json();
+  if (contentType.includes('application/json')) {
+    const jsonData = await resp.json();
+    console.log(`API JSON Response:`, jsonData);
+    return jsonData;
+  }
   return null;
 }
 

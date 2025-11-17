@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import DashboardPage from './pages/DashboardPage';
 import ChartsPage from './pages/ChartsPage';
 import FoodManagementPage from './pages/FoodManagementPage';
+import RecipeManagementPage from './pages/RecipeManagementPage';
 import DatasetPage from './pages/DatasetPage';
 import UserManagementPage from './pages/UserManagementPage';
 import LineChartComponent from './components/charts/LineChart';
@@ -25,6 +26,7 @@ function App() {
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="charts" element={<ChartsPage />} />
           <Route path="food-management" element={<FoodManagementPage />} />
+          <Route path="recipe-management" element={<RecipeManagementPage />} />
           <Route path="dataset" element={<DatasetPage />} />
           <Route path="user-management" element={<UserManagementPage />} />
           <Route path="charts/line" element={<LineChartComponent />} />

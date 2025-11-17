@@ -78,6 +78,9 @@ export const Regions = {
 	create: (data) => RegionsModule.createRegion(data),
 	update: (id, data) => RegionsModule.updateRegion(id, data),
 	delete: (id) => RegionsModule.deleteRegion(id),
+	getMainRegions: () => RegionsModule.getMainRegions(),
+	getAllRegionsWithClassification: () => RegionsModule.getAllRegionsWithClassification(), // Thêm hàm mới để lấy vùng miền chính
+	getProvincesByRegion: (regionId) => RegionsModule.getProvincesByRegion(regionId),
 };
 
 export const mapFromBackend = FoodsModule.mapFromBackend;

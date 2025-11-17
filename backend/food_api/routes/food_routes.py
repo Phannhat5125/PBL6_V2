@@ -11,6 +11,37 @@ def _get_payload():
     return data or {}
 
 
+@food_bp.route('/foods-with-nutrition', methods=['GET'])
+def list_food_with_nutrition():
+    """Lấy danh sách foods kèm thông tin dinh dưỡng - tối ưu hiệu suất"""
+    try:
+        limit = int(request.args.get('limit', 100))
+        offset = int(request.args.get('offset', 0))
+        category_id = request.args.get('category_id')
+        origin_region_id = request.args.get('origin_region_id')
+
+        data = model.get_all_with_nutrition(limit=limit, offset=offset)
+
+        # apply simple in-memory filters for category_id and origin_region_id if provided
+        if category_id is not None:
+            try:
+                cid = int(category_id)
+                data = [f for f in data if f.get('category_id') == cid]
+            except ValueError:
+                pass
+
+        if origin_region_id is not None:
+            try:
+                orid = int(origin_region_id)
+                data = [f for f in data if f.get('origin_region_id') == orid]
+            except ValueError:
+                pass
+
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @food_bp.route('/foods', methods=['GET'])
 def list_food():
     try:
@@ -57,42 +88,68 @@ def get_food(food_id):
 @food_bp.route('/foods', methods=['POST'])
 def create_food():
     try:
-        main_image = request.files.get('main_image')
-        category_id = request.form.get('category_id')
-        name = request.form.get('name')
-        ingredients = request.form.get('ingredients')
-        origin_region_id = request.form.get('origin_region_id')
-        avg_rating = request.form.get('avg_rating')
-        most_popular = request.form.get('most_popular')
-        # require name at minimum
-        # if not data.get('name'):
-        #     return jsonify({'error': 'Thiếu trường name'}), 400
+        data = _get_payload()
         
-        if not main_image:
-            return jsonify({'error': 'no file upload'}), 400
-        main_image = main_image.read()
-        data = {
-            'category_id': category_id,
-            'name': name,
-            'ingredients': ingredients,
-            'main_image': main_image,
-            'origin_region_id': origin_region_id,
-            'avg_rating': avg_rating,
-            'most_popular': most_popular
-        }
-        # # Normalize numeric fields if provided
-        # if 'avg_rating' in data:
-        #     try:
-        #         data['avg_rating'] = float(data['avg_rating'])
-        #     except Exception:
-        #         data['avg_rating'] = None
-        # if 'most_popular' in data:
-        #     try:
-        #         data['most_popular'] = int(data['most_popular'])
-        #     except Exception:
-        #         data['most_popular'] = 0
+        # Handle both form data and JSON data
+        if request.content_type and 'multipart/form-data' in request.content_type:
+            main_image = request.files.get('main_image')
+            category_id = request.form.get('category_id')
+            name = request.form.get('name')
+            ingredients = request.form.get('ingredients')
+            origin_region_id = request.form.get('origin_region_id')
+            avg_rating = request.form.get('avg_rating')
+            most_popular = request.form.get('most_popular')
+            
+            if main_image:
+                main_image = main_image.read()
+            
+            data = {
+                'category_id': category_id,
+                'name': name,
+                'ingredients': ingredients,
+                'main_image': main_image,
+                'origin_region_id': origin_region_id,
+                'avg_rating': avg_rating,
+                'most_popular': most_popular
+            }
+        
+        # require name at minimum
+        if not data.get('name'):
+            return jsonify({'error': 'Thiếu trường name'}), 400
 
-        # main_image can be provided as base64 string; model will decode it
+        # Normalize numeric fields if provided
+        if 'avg_rating' in data and data['avg_rating']:
+            try:
+                data['avg_rating'] = float(data['avg_rating'])
+            except Exception:
+                data['avg_rating'] = None
+        else:
+            data['avg_rating'] = None
+            
+        if 'most_popular' in data and data['most_popular']:
+            try:
+                data['most_popular'] = int(data['most_popular'])
+            except Exception:
+                data['most_popular'] = 0
+        else:
+            data['most_popular'] = 0
+
+        # Normalize category_id and origin_region_id
+        if 'category_id' in data and data['category_id']:
+            try:
+                data['category_id'] = int(data['category_id'])
+            except Exception:
+                data['category_id'] = None
+        else:
+            data['category_id'] = None
+            
+        if 'origin_region_id' in data and data['origin_region_id']:
+            try:
+                data['origin_region_id'] = int(data['origin_region_id'])
+            except Exception:
+                data['origin_region_id'] = None
+        else:
+            data['origin_region_id'] = None
 
         new_id = model.create(data)
         return jsonify({'message': 'Thêm món thành công', 'food_id': new_id}), 201
@@ -142,5 +199,15 @@ def delete_food(food_id):
         if ok:
             return jsonify({'message': 'Xóa thành công'}), 200
         return jsonify({'error': 'Không thể xóa'}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@food_bp.route('/foods/<int:food_id>/ingredients', methods=['GET'])
+def get_food_ingredients(food_id):
+    """Get detailed ingredients info for a specific food"""
+    try:
+        ingredients = model.get_food_ingredients_details(food_id)
+        return jsonify(ingredients), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500

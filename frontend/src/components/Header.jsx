@@ -20,7 +20,7 @@ const Header = ({ isDark, toggleTheme, onMenuClick }) => {
           <Menu size={20} />
         </button>
         
-        <div className="search-container">
+        {/* <div className="search-container">
           <Search size={18} className="search-icon" />
           <input
             type="text"
@@ -29,7 +29,7 @@ const Header = ({ isDark, toggleTheme, onMenuClick }) => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input"
           />
-        </div>
+        </div> */}
       </div>
       
       <div className="header-right">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BarChart3, Home, Utensils, HardDrive, Users } from 'lucide-react';
+import { BarChart3, Home, Utensils, ChefHat, HardDrive, Users } from 'lucide-react';
 import { AuthAPI } from '../api/auth';
 
 const Sidebar = ({ isCollapsed = false }) => {
@@ -67,17 +67,17 @@ const Sidebar = ({ isCollapsed = false }) => {
             </div>
           </NavLink>
         </div>
-        
+
         <div className="nav-item">
           <NavLink
-            to="/dataset"
+            to="/recipe-management"
             className={({ isActive }) => 
               `nav-button ${isActive ? 'active' : ''}`
             }
           >
             <div className="nav-button-content">
-              <HardDrive size={20} />
-              <span>Bộ dữ liệu</span>
+              <ChefHat size={20} />
+              <span>Quản lý công thức</span>
             </div>
           </NavLink>
         </div>
@@ -92,6 +92,20 @@ const Sidebar = ({ isCollapsed = false }) => {
             <div className="nav-button-content">
               <Users size={20} />
               <span>Quản lý người dùng</span>
+            </div>
+          </NavLink>
+        </div>
+        
+        <div className="nav-item">
+          <NavLink
+            to="/dataset"
+            className={({ isActive }) => 
+              `nav-button ${isActive ? 'active' : ''}`
+            }
+          >
+            <div className="nav-button-content">
+              <HardDrive size={20} />
+              <span>Bộ dữ liệu</span>
             </div>
           </NavLink>
         </div>

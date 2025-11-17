@@ -1,168 +1,143 @@
 import mysql.connector
 from config import db_config
-import base64
-
 
 def get_connection():
+    """Kết nối đến database MySQL"""
     return mysql.connector.connect(**db_config)
 
-
-def get_all(limit: int = 100, offset: int = 0, parent_region_id: int = None, q: str = None):
+def get_all(limit=100, offset=0, parent_region_id=None, q=None):
     conn = get_connection()
-    cur = conn.cursor(dictionary=True)
-    sql = "SELECT region_id, region_name, region_image, description, parent_image, parent_region_id FROM regions"
-    clauses = []
-    vals = []
+    cursor = conn.cursor(dictionary=True)
+
+    query = "SELECT region_id, region_name, description, region_image, parent_region_id FROM regions WHERE 1=1"
+    params = []
+
+    # Nếu có parent_region_id thì lọc theo
     if parent_region_id is not None:
-        clauses.append('parent_region_id=%s')
-        vals.append(parent_region_id)
+        query += " AND parent_region_id = %s"
+        params.append(parent_region_id)
+
+    # Nếu có từ khóa tìm kiếm
     if q:
-        like = f"%{q}%"
-        clauses.append('(region_name LIKE %s OR description LIKE %s)')
-        vals.extend([like, like])
+        query += " AND region_name LIKE %s"
+        params.append(f"%{q}%")
 
-    if clauses:
-        sql += ' WHERE ' + ' AND '.join(clauses)
+    query += " ORDER BY region_id LIMIT %s OFFSET %s"
+    params.extend([limit, offset])
 
-    sql += ' ORDER BY region_id DESC LIMIT %s OFFSET %s'
-    vals.extend([limit, offset])
-    cur.execute(sql, tuple(vals))
-    rows = cur.fetchall()
-    for r in rows:
-        ri = r.get('region_image')
-        if ri is not None:
-            try:
-                r['region_image'] = base64.b64encode(ri).decode('ascii')
-            except Exception:
-                r['region_image'] = None
-        pi = r.get('parent_image')
-        if pi is not None:
-            try:
-                r['parent_image'] = base64.b64encode(pi).decode('ascii')
-            except Exception:
-                r['parent_image'] = None
-    cur.close(); conn.close()
+    cursor.execute(query, params)
+    rows = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
     return rows
 
 
-def get_by_id(region_id: int):
+def get_by_id(region_id):
     conn = get_connection()
-    cur = conn.cursor(dictionary=True)
-    cur.execute("SELECT region_id, region_name, region_image, description, parent_image, parent_region_id FROM regions WHERE region_id=%s", (region_id,))
-    row = cur.fetchone()
-    if row:
-        ri = row.get('region_image')
-        if ri is not None:
-            try:
-                row['region_image'] = base64.b64encode(ri).decode('ascii')
-            except Exception:
-                row['region_image'] = None
-        pi = row.get('parent_image')
-        if pi is not None:
-            try:
-                row['parent_image'] = base64.b64encode(pi).decode('ascii')
-            except Exception:
-                row['parent_image'] = None
-    cur.close(); conn.close()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(
+        "SELECT region_id, region_name, description, region_image, parent_region_id FROM regions WHERE region_id = %s",
+        (region_id,)
+    )
+    row = cursor.fetchone()
+    cursor.close()
+    conn.close()
     return row
 
 
-def create(data: dict):
+def create(data):
     conn = get_connection()
-    cur = conn.cursor()
+    cursor = conn.cursor()
+    region_name = data.get("region_name")
+    description = data.get("description")
+    region_image = data.get("region_image")
+    parent_region_id = data.get("parent_region_id")
 
-    name = data.get('region_name')
-    if not name:
-        raise ValueError('region_name is required')
-
-    ri = data.get('region_image')
-    if isinstance(ri, str):
+    if parent_region_id not in [None, '', 'null']:
         try:
-            ri_bytes = base64.b64decode(ri)
-        except Exception:
-            ri_bytes = None
-    else:
-        ri_bytes = ri
+            parent_region_id = int(parent_region_id)
+        except ValueError:
+            parent_region_id = None
 
-    pi = data.get('parent_image')
-    if isinstance(pi, str):
-        try:
-            pi_bytes = base64.b64decode(pi)
-        except Exception:
-            pi_bytes = None
-    else:
-        pi_bytes = pi
+    cursor.execute("""
+        INSERT INTO regions (region_name, description, region_image, parent_region_id)
+        VALUES (%s, %s, %s, %s)
+    """, (region_name, description, region_image, parent_region_id))
 
-    desc = data.get('description')
-    parent_id = data.get('parent_region_id')
-    try:
-        parent_id = int(parent_id) if parent_id is not None and parent_id != '' else None
-    except Exception:
-        parent_id = None
-
-    sql = "INSERT INTO regions (region_name, region_image, description, parent_image, parent_region_id) VALUES (%s, %s, %s, %s, %s)"
-    vals = (name, ri_bytes, desc, pi_bytes, parent_id)
-    cur.execute(sql, vals)
     conn.commit()
-    new_id = cur.lastrowid
-    cur.close(); conn.close()
+    new_id = cursor.lastrowid
+    cursor.close()
+    conn.close()
     return new_id
 
 
-def update(region_id: int, data: dict):
+def update(region_id, data):
     conn = get_connection()
-    cur = conn.cursor()
+    cursor = conn.cursor()
+
     fields = []
-    vals = []
-    if 'region_name' in data:
-        fields.append('region_name=%s'); vals.append(data.get('region_name'))
-    if 'region_image' in data:
-        ri = data.get('region_image')
-        if isinstance(ri, str):
-            try:
-                ri_bytes = base64.b64decode(ri)
-            except Exception:
-                ri_bytes = None
-        else:
-            ri_bytes = ri
-        fields.append('region_image=%s'); vals.append(ri_bytes)
-    if 'description' in data:
-        fields.append('description=%s'); vals.append(data.get('description'))
-    if 'parent_image' in data:
-        pi = data.get('parent_image')
-        if isinstance(pi, str):
-            try:
-                pi_bytes = base64.b64decode(pi)
-            except Exception:
-                pi_bytes = None
-        else:
-            pi_bytes = pi
-        fields.append('parent_image=%s'); vals.append(pi_bytes)
-    if 'parent_region_id' in data:
-        try:
-            pid = int(data.get('parent_region_id'))
-        except Exception:
-            pid = None
-        fields.append('parent_region_id=%s'); vals.append(pid)
+    values = []
+
+    for field in ["region_name", "description", "region_image", "parent_region_id"]:
+        if field in data:
+            fields.append(f"{field} = %s")
+            values.append(data[field])
 
     if not fields:
-        cur.close(); conn.close()
         return False
 
-    sql = 'UPDATE regions SET ' + ', '.join(fields) + ' WHERE region_id=%s'
-    vals.append(region_id)
-    cur.execute(sql, tuple(vals))
+    values.append(region_id)
+    query = f"UPDATE regions SET {', '.join(fields)} WHERE region_id = %s"
+    cursor.execute(query, values)
     conn.commit()
-    changed = cur.rowcount
-    cur.close(); conn.close()
-    return changed > 0
+    affected = cursor.rowcount
+
+    cursor.close()
+    conn.close()
+    return affected > 0
 
 
-def delete(region_id: int):
+def delete(region_id):
     conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("DELETE FROM regions WHERE region_id=%s", (region_id,))
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM regions WHERE region_id = %s", (region_id,))
     conn.commit()
-    changed = cur.rowcount
-    cur.close(); conn.close()
-    return changed > 0
+    affected = cursor.rowcount
+    cursor.close()
+    conn.close()
+    return affected > 0
+
+
+# ✅ Hàm mới cho các vùng chính (Bắc, Trung, Nam)
+def get_by_ids(region_ids):
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = f"""
+        SELECT region_id, region_name, description, region_image, parent_region_id
+        FROM regions WHERE region_id IN ({','.join(['%s'] * len(region_ids))})
+        ORDER BY region_id
+    """
+    cursor.execute(query, tuple(region_ids))
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return rows
+
+def get_main_regions():
+    """
+    Lấy danh sách các tỉnh thành theo vùng miền chính (Miền Bắc, Miền Trung, Miền Nam).
+    """
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = """
+        SELECT parent_region_id, GROUP_CONCAT(region_name) AS provinces
+        FROM regions
+        WHERE parent_region_id IN (1, 2, 3)
+        GROUP BY parent_region_id
+    """
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return rows
