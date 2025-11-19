@@ -5,7 +5,7 @@ import { Recipes, FoodAPI } from '../api';
 const RecipeManagementPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingRecipe, setEditingRecipe] = useState(null);
@@ -28,23 +28,28 @@ const RecipeManagementPage = () => {
     const fetchData = async () => {
       setLoading(true);
       setError('');
+      
+      // Fetch recipes data ngay lập tức để hiển thị đầu tiên
       try {
-        // Load recipes
         const recipesData = await Recipes.list({ limit: 1000 });
         console.log('Loaded recipes:', recipesData);
         setRecipes(Array.isArray(recipesData) ? recipesData : []);
-        
-        // Load foods for dropdown
+      } catch (error) {
+        console.error('Error loading recipes:', error);
+        setError('Không thể tải danh sách công thức');
+      }
+      
+      // Sau đó fetch foods data để populate dropdown
+      try {
         const foodsData = await FoodAPI.list({ limit: 1000 });
         console.log('Loaded foods:', foodsData);
         setFoods(Array.isArray(foodsData) ? foodsData : []);
-        
-      } catch (err) {
-        setError('Không thể tải dữ liệu: ' + err.message);
-        console.error('Error loading data:', err);
-      } finally {
-        setLoading(false);
+      } catch (error) {
+        console.error('Error loading foods:', error);
+        // Không set error cho foods vì recipes vẫn có thể hiển thị được
       }
+      
+      setLoading(false);
     };
     
     fetchData();
@@ -101,8 +106,6 @@ const RecipeManagementPage = () => {
         setError('Vui lòng nhập đầy đủ thông tin bắt buộc (Món ăn, Tiêu đề, Công thức nấu ăn)');
         return;
       }
-
-      setLoading(true); // Set loading state
 
       // Exclude description from recipe payload (it goes to foods table)
       const { description, ...recipeData } = formData;
@@ -235,8 +238,6 @@ const RecipeManagementPage = () => {
     } catch (err) {
       console.error('Error saving recipe:', err);
       setError('Lỗi khi lưu công thức: ' + err.message);
-    } finally {
-      setLoading(false); // Always reset loading state
     }
   };
 
@@ -296,7 +297,6 @@ const RecipeManagementPage = () => {
             <button 
               className="btn btn-primary"
               onClick={() => setShowAddForm(true)}
-              disabled={loading}
             >
               <Plus size={16} />
               Thêm công thức
@@ -321,8 +321,8 @@ const RecipeManagementPage = () => {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="7" className="loading-cell">
-                  <div className="loading-message">Đang tải dữ liệu...</div>
+                <td colSpan="7" className="no-data">
+                  Đang tải danh sách công thức...
                 </td>
               </tr>
             ) : filteredRecipes.length === 0 ? (

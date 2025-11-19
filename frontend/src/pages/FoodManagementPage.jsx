@@ -5,7 +5,7 @@ import axios from 'axios'; // Giữ lại để fallback
 
 const FoodManagementPage = () => {
   const [foods, setFoods] = useState([]); // start empty, load from backend
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingFood, setEditingFood] = useState(null);
@@ -38,6 +38,9 @@ const FoodManagementPage = () => {
   const [allRegions, setAllRegions] = useState([]);
   const [regionsList, setRegionsList] = useState([]); // top-level regions
   const [provincesList, setProvincesList] = useState([]); // child regions (provinces)
+
+  // Thêm state để track khi regions đã được load
+  const [regionsLoaded, setRegionsLoaded] = useState(false);
 
   // Helper function để convert raw data từ fallback API
   const convertRawRegionData = (rawData) => {
@@ -74,37 +77,56 @@ const FoodManagementPage = () => {
 
   useEffect(() => {
     const fetchFoods = async () => {
-      setLoading(true); setError('');
+      setLoading(true);
+      setError('');
+      
+      // Fetch foods data với timeout ngắn để tránh hang
       try {
-        // load categories first
-        try {
-          const cats = await Categories.listCategories({ limit: 500 });
-          console.log('Loaded categories:', cats);
-          setCategories(cats || []);
-        } catch (e) {
-          // ignore categories errors but log
-          console.warn('load categories error:', e);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+        
+        const foodsData = await FoodAPI.list({ limit: 1000, signal: controller.signal });
+        clearTimeout(timeoutId);
+        
+        console.log('Loaded foods sample:', foodsData?.[0]);
+        setFoods(Array.isArray(foodsData) ? foodsData : []);
+      } catch (error) {
+        console.error('Error loading foods:', error);
+        if (error.name === 'AbortError') {
+          setError('Timeout khi tải dữ liệu - vui lòng thử lại');
+        } else {
+          setError('Không thể tải danh sách món ăn');
+        }
+      }
+
+      // Sau đó fetch các dữ liệu phụ song song
+      try {
+        const [categoriesResult, regionsResult] = await Promise.allSettled([
+          Categories.listCategories({ limit: 500 }),
+          Regions.getAllRegionsWithClassification()
+        ]);
+
+        // Xử lý categories data
+        if (categoriesResult.status === 'fulfilled') {
+          console.log('Loaded categories:', categoriesResult.value);
+          setCategories(categoriesResult.value || []);
+        } else {
+          console.warn('load categories error:', categoriesResult.reason);
         }
 
-        const data = await FoodAPI.list();
-        // FoodAPI.list returns frontend-ready objects already
-        console.log('Loaded foods sample:', data?.[0]);
-        setFoods(Array.isArray(data) ? data : []);
-
-        // load regions sử dụng API wrapper
-        try {
-          // Sử dụng hàm tiện ích để lấy và phân loại regions
-          const { mainRegions, provinces } = await Regions.getAllRegionsWithClassification();
-          setAllRegions([...mainRegions, ...provinces]); // Gộp tất cả regions
-          setRegionsList(mainRegions); // Chỉ lưu danh sách vùng chính
-
+        // Xử lý regions data
+        if (regionsResult.status === 'fulfilled') {
+          const { mainRegions, provinces } = regionsResult.value;
+          setAllRegions([...mainRegions, ...provinces]);
+          setRegionsList(mainRegions);
           console.log('Loaded regions:', {
             total: mainRegions.length + provinces.length,
             mainRegions: mainRegions.length,
             provinces: provinces.length
           });
-        } catch (error) {
-          console.error('Error loading regions:', error);
+          setRegionsLoaded(true);
+        } else {
+          console.error('Error loading regions:', regionsResult.reason);
           // Fallback: try direct API call
           try {
             const response = await axios.get('http://localhost:5000/api/regions?limit=1000');
@@ -114,6 +136,7 @@ const FoodManagementPage = () => {
               setAllRegions(allRegs);
               const mainRegions = allRegs.filter(r => r.parent_region_id === null || r.parent_region_id === undefined);
               setRegionsList(mainRegions);
+              setRegionsLoaded(true);
             }
           } catch (fallbackError) {
             console.error('Fallback regions error:', fallbackError);
@@ -122,13 +145,31 @@ const FoodManagementPage = () => {
           }
         }
       } catch (e) {
-        setError(e.message);
+        console.error('Error in fetchData:', e);
+        // Không set error để không ảnh hưởng UI nếu foods đã load
       } finally {
         setLoading(false);
       }
     };
     fetchFoods();
   }, []);
+
+  // useEffect để update form khi regions được load và đang edit
+  useEffect(() => {
+    if (regionsLoaded && editingFood && regionsList.length > 0) {
+      // Tìm lại region ID từ tên region
+      if (editingFood.region && !formData.region) {
+        const foundRegion = regionsList.find(r => r.name === editingFood.region);
+        if (foundRegion) {
+          const regionId = String(foundRegion.id);
+          setFormData(prev => ({ ...prev, region: regionId }));
+          // Load provinces
+          loadProvincesByRegion(regionId);
+          console.log('Auto-updated region from loaded data:', { region: editingFood.region, regionId });
+        }
+      }
+    }
+  }, [regionsLoaded, editingFood, regionsList, formData.region]);
 
   const resetForm = () => {
     setFormData({
@@ -249,18 +290,54 @@ const FoodManagementPage = () => {
     setEditingFood(food);
     setShowAddForm(true);
     const imageToUse = food.main_image || food.image;
+    
+    // Tìm region ID từ tên region hoặc parent_region_id từ origin_region_id
+    let regionId = '';
+    
+    if (food.origin_region_id) {
+      // Tìm region trong allRegions theo origin_region_id
+      const region = allRegions.find(r => r.id === food.origin_region_id);
+      if (region) {
+        // Nếu là tỉnh thành (có parent_region_id), lấy parent
+        // Nếu là vùng chính (không có parent_region_id), lấy chính nó
+        regionId = region.parent_region_id || region.id;
+      }
+    }
+    
+    if (!regionId && food.region && regionsList.length > 0) {
+      // Nếu không có origin_region_id hoặc không tìm được, tìm từ tên region
+      const foundRegion = regionsList.find(r => r.name === food.region);
+      regionId = foundRegion ? foundRegion.id : '';
+    }
+    
+    // Đảm bảo regionId là string để match với option value
+    regionId = regionId ? String(regionId) : '';
+    
     setFormData({
       name: food.name,
-      region: food.origin_region_id || '',
+      region: regionId,
       category_id: food.category_id || '',
       ingredients: Array.isArray(food.ingredients) ? food.ingredients.join(', ') : (food.ingredients || ''),
       image: imageToUse,
       province: food.province
     });
+    
     // Load provinces khi edit, nếu có region được chọn
-    if (food.origin_region_id) {
-      loadProvincesByRegion(food.origin_region_id);
+    if (regionId) {
+      loadProvincesByRegion(regionId);
     }
+    
+    // Debug log
+    console.log('Edit food data:', {
+      food_region: food.region,
+      food_province: food.province, 
+      food_origin_region_id: food.origin_region_id,
+      selected_region_id: regionId,
+      regionsList_length: regionsList.length,
+      regionsList_sample: regionsList.slice(0, 2),
+      formData_will_be_set: { name: food.name, region: regionId }
+    });
+    
     // Set main image (from foods.main_image field or fallback to image)
     setMainImage(null);
     setMainImagePreview(imageToUse || '');
@@ -378,7 +455,7 @@ const FoodManagementPage = () => {
         await saveNutrition(newId);
         // recipe
         if (recipe.title && recipe.instructions) await saveRecipe(newId);
-        setFoods([...foods, { ...foodData, image: foodData.main_image, id: newId }]);
+        setFoods([{ ...foodData, image: foodData.main_image, id: newId }, ...foods]);
       }
       setShowAddForm(false);
       resetForm();
@@ -407,7 +484,20 @@ const FoodManagementPage = () => {
   const filteredFoods = foods.filter(food => {
     const matchesSearch = food.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (food.region && food.region.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesRegion = filterRegion === '' || food.origin_region_id === Number(filterRegion);
+    
+    // Sửa logic lọc: tìm parent_region_id từ allRegions
+    let matchesRegion = filterRegion === '';
+    if (!matchesRegion && food.origin_region_id) {
+      // Tìm region trong allRegions theo origin_region_id
+      const region = allRegions.find(r => r.id === food.origin_region_id);
+      if (region) {
+        // Nếu là tỉnh thành (có parent_region_id), so sánh với parent
+        // Nếu là vùng chính (không có parent_region_id), so sánh trực tiếp
+        const parentRegionId = region.parent_region_id || region.id;
+        matchesRegion = parentRegionId === Number(filterRegion);
+      }
+    }
+    
     return matchesSearch && matchesRegion;
   });
 
@@ -419,9 +509,6 @@ const FoodManagementPage = () => {
       </div>
       
       <div className="dashboard-content">
-        {loading && <div className="loading-message">Đang tải dữ liệu...</div>}
-        {error && <div className="error-message">Lỗi: {error}</div>}
-
         {/* Search Controls */}
         <div className="search-controls-card">
           <div className="search-input-wrapper">
@@ -459,9 +546,20 @@ const FoodManagementPage = () => {
           </div>
         </div>
 
+        {error && <div className="error-message">Lỗi: {error}</div>}
+
       {/* Food Grid */}
       <div className="food-grid">
-        {filteredFoods.map(food => (
+        {loading ? (
+          <div style={{ gridColumn: '1 / -1' }} className="no-data">
+            Đang tải danh sách món ăn...
+          </div>
+        ) : filteredFoods.length === 0 ? (
+          <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '3rem', color: '#9ca3af' }}>
+            {searchTerm || filterRegion ? 'Không tìm thấy món ăn nào' : 'Chưa có món ăn nào'}
+          </div>
+        ) : (
+          filteredFoods.map(food => (
           <div key={food.id} className="food-card">
             <div className="food-image">
               <img src={food.main_image || food.image || '/placeholder-food.jpg'} alt={food.name} />
@@ -684,7 +782,8 @@ const FoodManagementPage = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+        )}
       </div>
 
       {/* Add/Edit Form Modal */}
@@ -734,6 +833,7 @@ const FoodManagementPage = () => {
                     value={formData.region}
                     onChange={(e) => {
                       const regionId = e.target.value;
+                      console.log('Region changed:', regionId);
                       setFormData({ ...formData, region: regionId, province: '' });
                       // Load provinces từ API khi chọn vùng miền
                       loadProvincesByRegion(regionId);
@@ -741,7 +841,7 @@ const FoodManagementPage = () => {
                   >
                     <option value="">Chọn vùng miền</option>
                     {regionsList.map((region) => (
-                      <option key={region.id} value={region.id}>
+                      <option key={region.id} value={String(region.id)}>
                         {region.name}
                       </option>
                     ))}

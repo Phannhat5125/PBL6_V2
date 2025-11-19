@@ -107,10 +107,6 @@ def update(category_id: int, data: dict):
         cur.close(); conn.close()
         return False
 
-    fields.append("created_at=created_at")
-    fields.append("updated_at=%s")
-    vals.append(datetime.utcnow())
-
     sql = "UPDATE categories SET " + ", ".join(fields) + " WHERE category_id=%s"
     vals.append(category_id)
     cur.execute(sql, tuple(vals))

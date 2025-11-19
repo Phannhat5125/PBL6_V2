@@ -163,18 +163,6 @@ const UserManagementPage = () => {
     }
   };
 
-  const stats = {
-    total: users.length,
-    active: users.filter(u => u.status === 'active').length,
-    locked: users.filter(u => u.status === 'locked').length,
-    newThisMonth: users.filter(u => {
-      const userDate = new Date(u.createdAt);
-      const currentDate = new Date();
-      return userDate.getMonth() === currentDate.getMonth() && 
-             userDate.getFullYear() === currentDate.getFullYear();
-    }).length
-  };
-
   return (
     <div className="user-management-page">
       <div className="dashboard-header">
@@ -183,49 +171,6 @@ const UserManagementPage = () => {
       </div>
       
       <div className="dashboard-content">
-        {/* Statistics Cards */}
-      <div className="stats-grid">
-        <div className="stat-card">
-          <div className="stat-icon blue">
-            <User size={24} />
-          </div>
-          <div className="stat-content">
-            <h3>Tổng người dùng</h3>
-            <p className="stat-number">{stats.total}</p>
-          </div>
-        </div>
-        
-        <div className="stat-card">
-          <div className="stat-icon green">
-            <CheckCircle size={24} />
-          </div>
-          <div className="stat-content">
-            <h3>Đang hoạt động</h3>
-            <p className="stat-number">{stats.active}</p>
-          </div>
-        </div>
-        
-        <div className="stat-card">
-          <div className="stat-icon red">
-            <XCircle size={24} />
-          </div>
-          <div className="stat-content">
-            <h3>Bị khóa</h3>
-            <p className="stat-number">{stats.locked}</p>
-          </div>
-        </div>
-        
-        <div className="stat-card">
-          <div className="stat-icon purple">
-            <UserPlus size={24} />
-          </div>
-          <div className="stat-content">
-            <h3>Mới tháng này</h3>
-            <p className="stat-number">{stats.newThisMonth}</p>
-          </div>
-        </div>
-      </div>
-
       {/* Search Controls */}
       <div className="search-controls-card">
         <div className="search-input-wrapper">
@@ -265,25 +210,39 @@ const UserManagementPage = () => {
         <table className="users-table">
           <thead>
             <tr>
-              <th>Avatar</th>
-              <th>Tên người dùng</th>
-              <th>Email</th>
-              <th>Trạng thái</th>
-              <th>Ngày tạo</th>
-              <th>Đăng nhập cuối</th>
-              <th>Hành động</th>
+              <th style={{ width: '60px', textAlign: 'center' }}>Avatar</th>
+              <th style={{ width: '60px', textAlign: 'center' }}>ID</th>
+              <th style={{ width: '200px', textAlign: 'center' }}>Tên người dùng</th>
+              <th style={{ width: '220px' }}>Email</th>
+              <th style={{ width: '140px' }}>Trạng thái</th>
+              <th style={{ width: '120px', textAlign: 'center' }}>Ngày tạo</th>
+              <th style={{ width: '140px', textAlign: 'center' }}>Đăng nhập cuối</th>
+              <th style={{ width: '160px'}}>Hành động</th>
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map(user => (
+            {loading ? (
+              <tr>
+                <td colSpan="8" className="no-data">
+                  Đang tải danh sách người dùng...
+                </td>
+              </tr>
+            ) : filteredUsers
+                .sort((a, b) => a.admin_id - b.admin_id) // Sort by ID ascending
+                .map(user => (
               <tr key={user.admin_id}>
-                <td>
+                <td style={{ textAlign: 'center' }}>
                   <div className="user-avatar">
                     {user.avatar && typeof user.avatar === 'string' && user.avatar.startsWith('data:') ? (
                       <img src={user.avatar} alt={user.username} style={{ width: 40, height: 40, borderRadius: '50%' }} />
                     ) : (
                       <span>{user.avatar || '👤'}</span>
                     )}
+                  </div>
+                </td>
+                <td style={{ textAlign: 'center' }}>
+                  <div className="user-id">
+                    #{user.admin_id}
                   </div>
                 </td>
                 <td>
@@ -293,11 +252,13 @@ const UserManagementPage = () => {
                   </div>
                 </td>
                 <td>
-                  <a href={`mailto:${user.email}`} className="email-link">
-                    {user.email}
-                  </a>
+                  <div className="email-cell">
+                    <a href={`mailto:${user.email}`} className="email-link">
+                      {user.email}
+                    </a>
+                  </div>
                 </td>
-                <td>
+                <td style={{ textAlign: 'center' }}>
                   <div className="status-cell">
                     {getStatusBadge(user.status)}
                     <div className="status-info">
@@ -308,13 +269,13 @@ const UserManagementPage = () => {
                     </div>
                   </div>
                 </td>
-                <td>
+                <td style={{ textAlign: 'center' }}>
                   <div className="date-info">
                     <Calendar size={12} />
                     {user.createdAt}
                   </div>
                 </td>
-                <td>
+                <td style={{ textAlign: 'center' }}>
                   <div className="login-info">
                     {user.lastLogin ? (
                       <>
@@ -326,7 +287,7 @@ const UserManagementPage = () => {
                     )}
                   </div>
                 </td>
-                <td>
+                <td style={{ textAlign: 'center' }}>
                   <div className="action-buttons">
                     <button
                       className="action-btn edit"

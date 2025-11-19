@@ -51,3 +51,65 @@ export async function getProvincesByRegion(regionId) {
     throw err;
   }
 }
+
+// CRUD operations for Region Management
+export async function createRegion(data) {
+  try {
+    const res = await axios.post(API_URL, data);
+    return res.data;
+  } catch (err) {
+    console.error('Error creating region:', err);
+    throw err;
+  }
+}
+
+export async function updateRegion(id, data) {
+  try {
+    const res = await axios.put(`${API_URL}/${id}`, data);
+    return res.data;
+  } catch (err) {
+    console.error('Error updating region:', err);
+    throw err;
+  }
+}
+
+export async function deleteRegion(id) {
+  try {
+    const res = await axios.delete(`${API_URL}/${id}`);
+    return res.data;
+  } catch (err) {
+    console.error('Error deleting region:', err);
+    throw err;
+  }
+}
+
+export async function getRegionById(id) {
+  try {
+    const res = await axios.get(`${API_URL}/${id}`);
+    const region = res.data;
+    return {
+      id: region.region_id,
+      name: region.region_name,
+      parent_region_id: region.parent_region_id,
+      description: region.description,
+      region_image: region.region_image
+    };
+  } catch (err) {
+    console.error('Error fetching region by id:', err);
+    throw err;
+  }
+}
+
+// Compatibility functions for index.js exports
+export const listRegions = getAllRegionsWithClassification;
+export const getRegion = getRegionById;
+export { createRegion as createRegionAPI };
+export { updateRegion as updateRegionAPI };
+export { deleteRegion as deleteRegionAPI };
+export const getMainRegions = () => {
+  return [
+    { id: 1, name: 'Miền Bắc', parent_region_id: null },
+    { id: 2, name: 'Miền Trung', parent_region_id: null },
+    { id: 3, name: 'Miền Nam', parent_region_id: null }
+  ];
+};

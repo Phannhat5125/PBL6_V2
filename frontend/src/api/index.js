@@ -75,11 +75,11 @@ export const Recipes = {
 export const Regions = {
 	list: (opts) => RegionsModule.listRegions(opts),
 	get: (id) => RegionsModule.getRegion(id),
-	create: (data) => RegionsModule.createRegion(data),
-	update: (id, data) => RegionsModule.updateRegion(id, data),
-	delete: (id) => RegionsModule.deleteRegion(id),
+	create: (data) => RegionsModule.createRegionAPI(data),
+	update: (id, data) => RegionsModule.updateRegionAPI(id, data),
+	delete: (id) => RegionsModule.deleteRegionAPI(id),
 	getMainRegions: () => RegionsModule.getMainRegions(),
-	getAllRegionsWithClassification: () => RegionsModule.getAllRegionsWithClassification(), // Thêm hàm mới để lấy vùng miền chính
+	getAllRegionsWithClassification: () => RegionsModule.getAllRegionsWithClassification(),
 	getProvincesByRegion: (regionId) => RegionsModule.getProvincesByRegion(regionId),
 };
 

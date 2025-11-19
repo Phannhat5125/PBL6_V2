@@ -151,7 +151,7 @@ export function mapToBackend(data) {
   };
 }
 
-export async function listFoods({ q, limit = 100, offset = 0, category_id, origin_region_id, withNutrition = true } = {}) {
+export async function listFoods({ q, limit = 1000, offset = 0, category_id, origin_region_id, withNutrition = true } = {}) {
   const params = new URLSearchParams();
   if (limit) params.append('limit', String(limit));
   if (offset) params.append('offset', String(offset));
