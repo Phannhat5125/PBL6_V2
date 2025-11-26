@@ -1,0 +1,200 @@
+STT,type,name,score-text,Main Ingredients,Calories (Approx.),Suitable Time,Origin / Province
+1,Noodle Soup,Pho,4.4,"Rice noodles, bone broth (beef/chicken), herbs, onion",350 - 500,Breakfast / Dinner,Nam Dinh / Hanoi (Northern Vietnam)
+2,Sandwich type,Bánh mì,4.6,"Baguette, pate, cucumber, cilantro, pickled carrots, chili",350 - 500,Breakfast / Lunch / Snack,Nationwide (Popularized in Saigon)
+3,Pancake,Crispy Vietnamese Pancake (Bánh xèo),4.2,"Rice flour, turmeric, coconut milk, shrimp, pork, bean sprouts",300 - 450 (per cake),Lunch / Dinner,South & Central Vietnam
+4,Appetizer,Vietnamese Fried Spring Rolls (Chả giò),4.3,"Minced pork, mushroom, glass noodles, egg, rice paper wrapper",150 - 200 (per roll),Appetizer / Main Course,Nationwide
+5,Side Dish,Vietnamese Crullers (Quẩy),3.7,"Wheat flour, baking powder, yeast (deep-fried)",100 - 150 (per pair),Breakfast (Side dish for Pho/Porridge),Nationwide (Chinese origin)
+6,Stew,Vietnamese Beef Stew (Bò kho),4.4,"Beef shank, carrots, lemongrass, five-spice powder, annatto oil",400 - 550,Breakfast / Lunch,Southern Vietnam
+7,Noodle Soup,Beef pho (Phở bò),4.5,"Beef slices/balls, rice noodles, beef bone broth, ginger, anise",400 - 500,Breakfast / Dinner,Nam Dinh / Hanoi
+8,Noodle Soup,Chicken Pho (Phở gà),4.2,"Shredded chicken, rice noodles, chicken broth, lime leaves",350 - 450,Breakfast / Dinner,Hanoi
+9,Noodle Soup,Hue Breakfast Noodle Soup (Bún bò Huế),4.3,"Thick rice vermicelli, beef shank, pork knuckles, lemongrass, shrimp paste",450 - 600,Breakfast / Lunch,Thua Thien Hue
+10,Dessert,Chè,3.7,"Beans (mung/black), coconut milk, jelly, fruit, sticky rice, sugar",200 - 500,Dessert / Snack,Nationwide
+11,Noodle Dish,Quang-Style Noodles (Mì Quảng),4.5,"Wide rice noodles, pork, shrimp, turmeric broth, peanuts, rice cracker",400 - 550,Breakfast / Lunch,Quang Nam / Da Nang
+12,Sauce,Vietnamese Fish Sauce (Nước chấm),4.4,"Fish sauce, water, sugar, lime juice, garlic, chili",30 - 50 (per serving),Condiment (Side),Nationwide
+13,Sandwich,Meat and Cold Cuts Bánh Mì (Bánh mì thịt),4.4,"Baguette, ham, head cheese, pate, pork floss, mayonnaise",450 - 550,Breakfast / Lunch,Ho Chi Minh City (Saigon)
+14,Fish Soup,Sweet and Sour Tamarind Soup (Canh chua),3.9,"Tamarind pulp, pineapple, tomatoes, fish/shrimp, elephant ear stalks",100 - 150 (excluding rice),Lunch / Dinner,Mekong Delta (Southern Vietnam)
+15,Appetizer,Vietnamese Summer Rolls (Gỏi cuốn),4.1,"Rice paper, shrimp, pork belly, vermicelli, lettuce, herbs",50 - 70 (per roll),Appetizer / Light Meal,Southern Vietnam
+16,Pork Dish,Grilled Pork Meatballs with Vermicelli Noodles (Bún chả),4.4,"Grilled pork patties/belly, vermicelli, dipping sauce with papaya",500 - 650,Lunch,Hanoi
+17,Rice Dish,Broken Rice (Cơm tấm),4.3,"Broken rice, grilled pork chop, egg meatloaf, fried egg, scallion oil",600 - 800,Breakfast / Lunch,Ho Chi Minh City (Saigon)
+18,Rice Dish,Vietnamese Steamed Savory Rice Cake (Bánh bèo),4.2,"Rice flour batter, dried shrimp, crispy pork skin, scallion oil",40 - 60 (per small bowl),Snack / Light Meal,Hue (Central Vietnam)
+19,Street Food,Steamed Rice Rolls Stuffed with Pork and Mushrooms (Bánh cuốn),4,"Fermented rice batter, minced pork, wood ear mushrooms, fried shallots",300 - 450,Breakfast,Northern Vietnam
+20,Rice Dish,Xôi,3.7,"Glutinous rice, mung bean, chicken/pork floss/peanuts/corn",300 - 600,Breakfast,Nationwide
+21,Noodle Dish,Grilled Pork and Rice Vermicelli (Bún thịt nướng),4.4,"Vermicelli, grilled pork, peanuts, scallion oil, pickled carrots, fish sauce",450 - 550,Lunch / Dinner,Southern / Central Vietnam
+22,Noodle Dish,Tomato and Crab Noodle Soup (Bún riêu),4.1,"Vermicelli, freshwater crab paste, tomatoes, tofu, pork blood curd",350 - 450,Breakfast / Lunch,Northern Vietnam
+23,Rice Dish,Sticky Rice Cakes with Mung Beans or Pork (Bánh tét),4.1,"Glutinous rice, mung bean, pork belly, banana leaf (boiled)",200 - 300 (per slice),Tet Holiday / Breakfast,Southern / Central Vietnam
+24,Stew,Vietnamese Chicken Curry (Cà ri gà),4.2,"Chicken, sweet potatoes, potatoes, coconut milk, curry powder, lemongrass",400 - 550,Lunch / Dinner / Parties,Southern Vietnam
+25,Dessert,Coconut Jelly (Rau câu),4.3,"Agar powder, coconut water, coconut milk, sugar, pandan leaf",60 - 100,Dessert / Snack,Nationwide
+26,Noodle Dish,Vietnamese Thick Noodle Soup (Bánh canh),3.9,"Thick tapioca/rice noodles, broth (pork/crab), quail eggs, pork knuckle",350 - 500,Breakfast / Lunch / Dinner,Southern / Central Vietnam
+27,Rice Dish,Vietnamese Fried Rice (Cơm chiên),4.1,"Rice, egg, sausage , mixed vegetables, garlic",500 - 700,Breakfast / Lunch / Dinner,Nationwide
+28,Snack,Deep-Fried Glutinous Rice Balls (Bánh rán),4,"Glutinous rice flour, mung bean paste, sesame seeds, sugar glaze",200 - 300,Snack,Northern (B�nh R�n) / Southern (B�nh Cam)
+29,Dessert,Floating Glutinous Rice Dumplings (Bánh trôi),3.5,"Glutinous rice flour, brown sugar cube filling, sesame seeds",50 - 80 (per ball),Snack / Cold Food Festival,Northern Vietnam
+30,Cake,Steamed Tapioca Layer Cake (Bánh da lợn),4,"Tapioca starch, rice flour, mung bean, coconut milk, pandan",150 - 250,Dessert / Snack,Southern Vietnam
+31,Dessert,Mung Bean Cake (Bánh đậu xanh),3.8,"Mung bean powder, sugar, oil/fat",50 - 80 (per cube),Snack (Tea pairing),Hai Duong
+32,Snack,Vietnamese Steamed Buns (Bánh bao),4.2,"Flour, yeast, ground pork, wood ear mushroom, quail egg, sausage",250 - 350,Breakfast / Snack,Nationwide (Chinese origin)
+33,Rice Dish,Burnt Rice (Cơm cháy),3.9,"Crispy dried rice crust, pork floss, scallion oil, chili paste",150 - 200 (per piece),Snack,Ninh Binh / Ho Chi Minh City
+34,Noodle Dish,Rice Vermicelli Noodles with Fried Tofu and Shrimp Paste (Bún đậu mắm tôm),4.1,"Pressed vermicelli, fried tofu, fermented shrimp paste, boiled pork, herbs",550 - 700,Lunch,Hanoi
+35,Ground Meat Dish,Grilled Beef Wrapped in Betel Leaf (Bò lá lốt),4.3,"Minced beef, spices, wild betel leaves (Piper sarmentosum)",50 - 70 (per roll),Dinner / Snack,Southern Vietnam
+36,Noodle Dish,Southern Vietnamese Beef Noodle Salad (Bún bò nam bộ),4.5,"Vermicelli, stir-fried beef, lettuce, bean sprouts, peanuts, dried shallots",450 - 550,Lunch / Dinner,"Hanoi (despite the name ""Nam Bo"")"
+37,Noodle Dish,Fermented Fish Noodle Soup (Bún mắm),3.7,"Fermented fish broth, thick vermicelli, eggplant, roast pork, seafood",400 - 550,Lunch / Dinner,Mekong Delta (Western Region)
+38,Noodle Dish,Roasted Pork with Cao Lau Noodles (Cao lầu),4,"Thick rice noodles (lye water), char siu pork, croutons, herbs",350 - 450,Breakfast / Lunch,Hoi An (Quang Nam)
+39,Dessert,Vietnamese Crème Caramel (Bánh flan),3.9,"Eggs, milk, condensed milk, caramel sauce, coffee",100 - 150,Dessert / Snack,Nationwide (French origin)
+40,Meat Dish,Raw Blood Pudding (Tiết canh),2.5,"Fresh blood (duck/pig/goat), cartilage, herbs, peanuts, lime",100 - 150,Breakfast / Lunch (Festive),Northern Vietnam
+41,Rice Dish,Square Sticky Rice Cake (Bánh chưng),4,"Glutinous rice, mung bean, pork belly, dong leaves",300 - 400 (per slice),Tet Holiday / Breakfast,Northern Vietnam
+42,Dumplings,Stuffed Tapioca Dumplings (Bánh bột lọc),4.2,"Tapioca starch, shrimp, pork belly, fish sauce dip",40 - 60 (per piece),Snack / Appetizer,Hue (Central Vietnam)
+43,Rice Dish,Bamboo Cooked Sticky Rice (Cơm lam),4,Glutinous rice cooked inside bamboo tubes,200 - 300 (per tube),Lunch / Dinner,Northwest / Central Highlands
+44,Rice Dish,Chicken Sticky Rice (Xôi gà),4.1,"Glutinous rice, shredded chicken, fried shallots, soy sauce",400 - 500,Breakfast,Nationwide
+45,Sandwich,Cold Cut Banh Mi (Bánh mì đặc biệt),4.2,"Baguette, pate, ham, head cheese, pork floss, mayo",450 - 550,Breakfast / Lunch,Nationwide
+46,Wrap,Spring Rolls with Chinese Sausage (Bò bía),4.1,"Jicama, Chinese sausage, dried shrimp, egg, hoisin sauce",80 - 100 (per roll),Snack,Southern Vietnam (Saigon)
+47,Pancake,Hue Pancake (Bánh khoai),4.3,"Rice flour, turmeric, shrimp, pork, egg (fried crispy)",300 - 400,Snack / Main,Hue
+48,Sausage Dish,Vietnamese Grilled Pork Sausage (Nem nướng),4.3,"Ground pork, garlic, sugar, served with rice paper & herbs",400 - 500 (per set),Lunch / Dinner,Nha Trang / Dalat
+49,Snack,Cured Fermented Beef or Pork (Nem chua),3.4,"Pork, pork skin, garlic, chili, guava leaves (fermented)",30 - 50 (per piece),Snack / Appetizer,Thanh Hoa / Lai Vung
+50,Dessert,Vietnamese Fruit Cocktail (Chè Thái),3.8,"Canned fruits, jackfruit, durian, jelly, coconut milk",300 - 400,Dessert,Nationwide (Thai adaptation)
+51,Chicken Dish,Boiled Chicken (Gà luộc),3.7,"Whole chicken, ginger, turmeric (skin), lime leaf",200 - 250 (per serving),Main / Festive,Nationwide
+52,Dumplings,Rice and Pork Pyramid Dumpling (Bánh giò),4,"Rice flour dough, minced pork, wood ear mushroom",300 - 350,Breakfast / Snack,Hanoi
+53,Sauce,Mắm nêm,4.1,"Fermented fish, pineapple, sugar, chili, garlic",40 - 60 (dip),Condiment (Dip),Central Vietnam (Da Nang)
+54,Soup,Vietnamese Hot Pot,4.1,"Bone broth, mixed meats, seafood, vegetables, noodles",500 - 800,Dinner / Party,Nationwide
+55,Pancake,Vietnamese Mini Savory Pancakes (Bánh khọt),4.3,"Rice flour, coconut milk, shrimp, scallion oil",50 - 80 (per cake),Breakfast / Snack,Vung Tau
+56,Street Food Sweets,Vietnamese Fried Bananas (Chuối chiên),4,"Ripe bananas, flour batter, sesame seeds",150 - 200,Snack,Nationwide
+57,Noodle Soup,Red Noodle Soup with Crab (Bánh đa cua),4,"Red flat noodles, field crab paste, water spinach",400 - 500,Breakfast / Lunch,Hai Phong
+58,Breakfast,Vietnamese Steak and Eggs (Bò né),4.3,"Beef steak, egg, pate, butter, baguette",500 - 700,Breakfast,Southern Vietnam
+59,Pork Dish,Vietnamese Caramelized Pork Belly (Thịt kho tàu),4.5,"Pork belly, boiled eggs, coconut water, fish sauce",300 - 400 (small bowl),Main (Tet Holiday),Southern Vietnam
+60,Beef Dish,Vietnamese Shaking Beef (Bò lúc lắc),4.5,"Cubed beef, bell peppers, onions, soy sauce",400 - 500,Lunch / Dinner,Southern Vietnam
+61,Street Food Sweets,Vietnamese Donuts (Bánh cam),3.8,"Glutinous rice flour, mung bean paste, sesame, sugar glaze",200 - 250,Snack,Southern Vietnam
+62,Porridge,Vietnamese Pork Offal Porridge (Cháo lòng),3.9,"Rice porridge, pig blood curd, intestine, liver, stomach",350 - 450,Breakfast / Dinner,Nationwide
+63,Soup,Snail Noodle Soup (Bún ốc),3.8,"Vermicelli, freshwater snails, tomatoes, vinegar broth",350 - 450,Breakfast / Lunch,Hanoi
+64,Fish Soup,Vietnamese Sweet and Sour Soup (Canh chua cá),4.2,"Fish (catfish/snakehead), pineapple, tamarind, tomato",150 - 200 (soup only),Lunch / Dinner,Mekong Delta
+65,Dessert,Vietnamese Honeycomb Cake (Bánh bò),3.9,"Rice flour, yeast, sugar, coconut milk (steamed/baked)",100 - 150,Snack / Dessert,Southern Vietnam
+66,Pancake,Steamed Wet Pancakes (Bánh ướt),3.6,"Thin steamed rice sheets, Vietnamese ham (Ch?), fish sauce",300 - 400,Breakfast,Central / Nationwide
+67,Cake,Vietnamese Banana Cake (Bánh chuối),3.9,"Bananas, bread/flour, coconut milk, condensed milk",200 - 300,Dessert,Nationwide
+68,Dessert,Thorn Leaf Cake (Bánh gai),3.4,"Glutinous rice, ramie leaves (black color), mung bean, coconut",150 - 200,Snack / Gift,Nam Dinh
+69,Meat Jelly Dish,Vietnamese Pork Aspic (Thịt đông),3.2,"Pork leg, pork skin, wood ear mushroom, pepper (jellied)",200 - 300,Main (Winter/Tet),Northern Vietnam
+70,Rice Dish,Xôi gấc,3.8,"Glutinous rice, Gac fruit (Momordica cochinchinensis)",300 - 400,Breakfast / Festive,Nationwide
+71,Meatballs,Vietnamese beef meatballs (Bo vien),3.8,"Beef, tendon, spices (served in soup or fried)",150 - 200 (per 100g),Side Dish / Snack,Nationwide
+72,Beef Dish,Beef in Vinegar Hot Pot (Bò nhúng dấm),4.7,"Thinly sliced beef, vinegar & coconut water broth, rice paper",400 - 600,Dinner,Nationwide
+73,Stir-fry,Morning Glory Stir-Fry (Rau muống xào tỏi),4.3,"Water spinach, garlic, oil, fish sauce",100 - 150,Side Dish,Nationwide
+74,Sweet Soup,Sticky Rice Balls in Ginger Syrup (Chè trôi nước),4.1,"Glutinous rice, mung bean filling, ginger syrup, coconut milk",300 - 400,Dessert,Southern Vietnam
+75,Freshwater Fish Dish,Caramelized Fish in Clay Pot (Cá kho tộ),3.9,"Catfish/Snakehead fish, caramel sauce, fish sauce, pepper",200 - 300,Main Course,Southern Vietnam
+76,Squid Dish,Vietnamese Sun-Dried Squid (Mực một nắng),4.1,"Squid (dried for one day), grilled",100 - 150 (per 100g),Snack (with beer),Coastal Regions (Phan Thiet)
+77,Sweet Pastry,Mooncake (Bánh trung thu),3.4,"Flour/Pastry, lotus seed/mixed nut/egg yolk filling",700 - 1000 (per cake),Mid-Autumn Festival,Nationwide
+78,Appetizer,Pho Rolls (Phở cuốn),3.6,"Uncut Pho sheets, stir-fried beef, herbs, dipping sauce",50 - 70 (per roll),Snack / Lunch,Hanoi
+79,Appetizer,Little Cake (Bánh ít),3.2,"Glutinous rice flour, mung bean or shrimp filling, banana leaf",150 - 200,Snack / Rituals,Central Vietnam (Binh Dinh)
+80,Noodle Dish,Crab Tapioca Noodle Soup (Bánh canh cua),,"Thick tapioca noodles, crab meat, quail eggs, thick broth",400 - 550,Breakfast / Dinner,Southern Vietnam
+81,Appetizer,Shrimp and Sweet Potato Fritters (Bánh tôm),4,"Sweet potato strips, shrimp, flour batter (deep-fried)",300 - 400,Snack,Hanoi (West Lake)
+82,Chicken Dish,Grilled Sapa Black Chicken (Gà bản đến nướng),,"Black chicken (Silkie), honey, wild spices",250 - 350,Main Course,Sapa (Northern Mountains)
+83,Dessert,Banana Coconut Tapioca Pudding (Chè chuối),3.6,"Banana, tapioca pearls, coconut milk, roasted peanuts",250 - 350,Dessert,Southern Vietnam
+84,Stir-fry,Stir-Fried Pho (Phở xào),4.2,"Pho noodles, beef, bok choy, gravy sauce",500 - 650,Lunch / Dinner,Nationwide
+85,Noodle Dish,Fried Fish Cake Noodle Soup (Bún chả cá),3.8,"Vermicelli, fried fish cakes, pineapple, pumpkin broth",350 - 450,Breakfast / Lunch,Da Nang / Nha Trang
+86,Noodle Dish,Nam Vang Noodle Soup (Hủ tiếu Nam Vang),4,"Tapioca/Rice noodles, minced pork, shrimp, liver, quail egg",400 - 500,Breakfast / Dinner,Southern Vietnam
+87,Noodle Dish,Mixed Pho (Phở trộn),3.9,"Pho noodles, chicken/beef, soy sauce dressing, herbs, peanuts",450 - 550,Lunch / Dinner,Hanoi
+88,Rice Dish,Broken Rice with Grilled Pork (Cơm tấm sườn),4.3,"Broken rice, grilled pork chop, scallion oil, fish sauce",600 - 800,Breakfast / Lunch,Ho Chi Minh City
+89,Sandwich,Roasted Pork Belly Bánh Mì (Bánh mì heo quay),4.5,"Baguette, crispy roast pork belly, cucumber, sauce",500 - 600,Breakfast / Lunch,Nationwide
+90,Pork Dish,Grilled Ground Pork on Lemongrass Skewers (Nem lui),4.3,"Minced pork wrapped on lemongrass stalks, peanut sauce",50 - 70 (per skewer),Main / Wrap,Hue
+91,Snack,Sugared or Salted Fruit (Ô mai),,"Apricot, plum, dracontomelon, ginger, sugar, salt, chili",20 - 40 (per piece),Snack,Hanoi
+92,Offal Soup,Vietnamese Pork Rind Soup (Canh bóng),,"Dried pig skin, broccoli, carrots, mushrooms, meatballs",150 - 200,Main (Festive/Tet),Hanoi
+93,Pancake,Vietnamese Mini Pancakes (Bánh căn),3.5,"Rice flour, quail egg, green mango, scallion oil",40 - 60 (per pair),Breakfast / Dinner,Dalat / Ninh Thuan
+94,Street Food,Vietnamese Rice Balls (Cơm nắm),,"Compressed cooked rice, sesame and peanut salt (mu?i v?ng)",200 - 300,Snack / Picnic,Northern Vietnam
+95,Vegetable Soup,Vietnamese Bamboo Shoots Soup (Canh măng),,"Dried or fresh bamboo shoots, pork trotters or duck",200 - 300,Main (Tet Holiday),Nationwide
+96,Sweet Soup,Vietnamese Mung Bean Sweet Soup (Chè đậu xanh),3.1,"Mung beans, sugar, coconut milk (optional)",200 - 300,Dessert,Nationwide
+97,Rice Dish,Green Sticky Rice (Cốm),3.5,Young glutinous rice (immature),250 - 300 (per 100g),Snack / Dessert,Hanoi (Vong Village)
+98,Sandwich,Meatball Bánh Mì (Bánh mì xíu mại),3.8,"Baguette, pork meatballs, tomato sauce",400 - 500,Breakfast,Dalat
+99,Chicken Soup,Vietnamese Chicken and Glass Noodle Soup (Miến gà),3.9,"Glass noodles (mung bean), chicken broth, shredded chicken",300 - 400,Breakfast / Lunch,Nationwide
+100,Appetizer,Sugar Cane Shrimp (Chạo tôm),4.4,"Shrimp paste wrapped around sugar cane, grilled",100 - 150 (per piece),Appetizer / Main,Hue / Southern Vietnam
+101,Fish Dish,Turmeric Fish with Dill and Noodles (Chả cá Lã Vọng),4.6,"Hemibagrus/Catfish, dill, scallion, shrimp paste, peanuts",500 - 600,Lunch / Dinner,Hanoi
+102,Noodle Soup,Northern Vietnamese Beef Pho (Phở bò tái chín),4.3,"Flat rice noodles, rare & cooked beef, clear bone broth, green onion",400 - 500,Breakfast / Dinner,Hanoi / Nam Dinh
+103,Salad,Papaya salad (Gỏi đu đủ),4.2,"Green papaya, beef jerky, peanuts, Thai basil, soy sauce dressing",150 - 250,Snack / Appetizer,Hanoi / Saigon
+104,Rice Dish,Red River Delta Steamed Rice Cake (Bánh tẻ),,"Rice flour, minced pork, wood ear mushroom, dong leaves",100 - 150 (per cake),Breakfast / Snack,Hung Yen / Hanoi
+105,Sweet Soup,Lotus Seeds and Green Rice Flakes Sweet Soup (Chè hạt sen),3.3,"Lotus seeds, rock sugar, longan (optional)",150 - 250,Dessert / Snack,Hue
+106,Sweet Soup,Pomelo Sweet Soup (Chè bưởi),3.6,"Pomelo pith, mung bean, coconut milk, tapioca starch",250 - 350,Dessert,An Giang (Mekong Delta)
+107,Pudding,Vietnamese Taro Pudding (Chè khoai môn),3.3,"Taro, sticky rice, coconut milk, pandan leaf",300 - 400,Dessert,Southern Vietnam
+108,Salad,Nộm,4,"Green papaya/mango/banana flower, peanuts, herbs, sweet & sour sauce",100 - 150,Appetizer,Northern Vietnam
+109,Salad,Vietnamese Shredded Chicken Salad (Gỏi gà),3.6,"Shredded chicken, onion, cabbage, laksa leaves, fish sauce",200 - 300,Appetizer / Side,Nationwide
+110,Salad,Vietnamese Beef Salad (Gỏi bò),3.8,"Beef slices, onions, celery, lime dressing, peanuts",250 - 350,Appetizer,Nationwide
+111,Fish Dish,Vu Dai Braised Fish,,"Black carp, galangal, ginger, pork belly, stewed in clay pot",200 - 300,Main Course,Ha Nam
+112,Rice Dish,Clam Rice (Cơm hến),,"Cold rice, baby clams, pork cracklings, shrimp paste, herbs, broth",300 - 450,Breakfast / Lunch,Hue
+113,Dumplings,Flat Steamed Rice Dumplings (Bánh nậm),4.2,"Rice flour batter, minced shrimp, pork, banana leaf",30 - 50 (per cake),Snack / Appetizer,Hue
+114,Sandwich,Grilled Chicken Bánh Mì (Bánh mì gà nướng),4,"Baguette, grilled chicken, cucumber, pickled carrots",450 - 550,Breakfast / Lunch,Nationwide
+115,Noodle Soup,Pork Ball Vermicelli Soup (Bún mọc),3.8,"Vermicelli, pork paste balls (m?c), pork ribs, shiitake mushrooms",400 - 500,Breakfast / Lunch,Hanoi
+116,Noodle Soup,Vegan Pho (Pho chay),4.2,"Rice noodles, vegetable broth (radish/carrot), tofu, mock meat",300 - 400,Breakfast / Lunch,Nationwide
+117,Chicken Dish,Lemongrass Chicken (Gà kho sả ớt),4.1,"Chicken, lemongrass, chili, fish sauce, turmeric",250 - 350,Main Course,Southern / Central
+118,Noodle Dish,Rice Vermicelli with Jellyfish and Fish (Bún cá sứa),,"Vermicelli, crunchy jellyfish, fried fish cake, clear broth",350 - 450,Breakfast / Lunch,Nha Trang / Quy Nhon
+119,Cooked Sausage,Vietnamese Beef Roll (Chả bò),,"Lean beef paste, black pepper, banana leaf wrapper",100 - 150 (per 100g),Snack / Main,Da Nang
+120,Snack,Vietnamese Donuts (Bánh tiêu),3.3,"Wheat flour, sugar, sesame seeds (deep-fried)",100 - 150,Snack,Southern Vietnam
+121,Dumplings,Crispy Dumplings (Bánh gối),,"Flour wrapper, minced pork, glass noodle, egg, mushroom",200 - 300 (per piece),Snack (Afternoon),Hanoi
+122,Dessert,Vietnamese Rice Wine Dessert (Cơm rượu),,"Fermented glutinous rice balls, syrup",150 - 200,Dessert,Southern Vietnam
+123,Sandwich,Fish Cake Banh Mi (Bánh mì chả cá),,"Baguette, fried fish cake, cucumber, laksa leaves, chili sauce",400 - 500,Breakfast / Street Food,Nha Trang / Vung Tau
+124,Dessert,Sticky Rice Ginger Peanut Bars (Chè lam),,"Roasted sticky rice flour, molasses, ginger, peanuts",100 - 150 (per slice),Snack (Tea pairing),Hanoi (Thach That)
+125,Noodle Soup,Cellophane Noodles with Eel (Miến lươn),,"Glass noodles, crispy or soft eel, laksa leaves, bean sprouts",350 - 450,Breakfast / Lunch,Nghe An / Hanoi
+126,Soup,Winter Melon Soup (Canh bí đao),,"Winter melon, pork ribs or ground pork, scallions",100 - 150,Main Course,Nationwide
+127,Stew,Thắng cố,,"Horse meat, offal, traditional spices (cardamom, cinnamon)",300 - 500,Lunch / Festive,Lao Cai (Hmong people)
+128,Rice Dish,Xôi vò,,"Glutinous rice, mung bean paste (loose grains), oil",300 - 400,Breakfast / Festive,Nationwide
+129,Rice Dish,Xôi ngũ sắc,,"Glutinous rice dyed with natural plants (magenta, turmeric, pandan)",300 - 450,Festive / Breakfast,Northwest (Tay/Thai people)
+130,Freshwater Fish Dish,Grilled Snakehead Fish (Cá lóc nướng trui),,"Whole snakehead fish (grilled in straw), tamarind sauce, herbs",150 - 200,Main Course,Mekong Delta
+131,Side Dish,Vietnamese Herb Platter (Đĩa rau sống),4.1,"Lettuce, mint, perilla, basil, coriander, cucumber",20 - 50,Side Dish,Nationwide
+132,Appetizer,Rare Beef in Lime Juice Salad (Bò tái chanh),4,"Rare beef cured in lime juice, onions, herbs, peanuts, prawn crackers",200 - 300,Appetizer / Beer Snack,Nationwide
+133,Noodle Dish,Rice Noodle Bowls with Pork and Spring Rolls (Bún thịt nướng chả giò),4.3,"Vermicelli, grilled pork, spring rolls, veggies, fish sauce",550 - 700,Lunch / Dinner,Southern Vietnam
+134,Dessert,Pop Rice,3.9,"Puffed rice, sugar (tube shape)",50 - 100 (per piece),Snack,Nationwide
+135,Sweet Soup,Three Color Dessert (Chè ba màu),4.2,"Mung bean paste, red beans, green jelly, coconut milk",300 - 400,Dessert,Nationwide
+136,Fruit Salad,Vietnamese Fruit Salad (Hoa quả dầm),,"Mixed tropical fruits, condensed milk, yogurt, shaved ice",200 - 300,Snack / Dessert,Hanoi
+137,Savory Pastry,Pâté chaud,,"Puff pastry, minced pork/liver pate filling",250 - 350,Breakfast / Snack,French-Vietnamese
+138,Salad,Vietnamese Lotus Root Salad (Gỏi ngó sen),,"Pickled lotus root, shrimp, pork belly, carrots, peanuts",150 - 250,Appetizer / Party,Southern Vietnam
+139,Dessert,Husband and Wife Cake (Bánh phu thê),,"Tapioca flour, mung bean, coconut shreds, wrapped in leaves",100 - 150,Wedding / Snack,Bac Ninh
+140,Noodle Soup,Kiên Giang Fish and Shrimp Noodle Soup (Bún cá Kiên Giang),,"Vermicelli, snakehead fish, shrimp, turmeric broth",350 - 450,Breakfast / Lunch,Kien Giang
+141,Soup,Mushroom and Seafood Soup (Canh nấm tràm),,"Melaleuca mushrooms, shrimp, squid or pork",100 - 150,Lunch / Dinner,Phu Quoc
+142,Soup,Duck Noodle Soup with Bamboo Shoots (Bún măng vịt),4.1,"Vermicelli, duck meat, dried or fresh bamboo shoots",400 - 550,Breakfast / Lunch,Nationwide
+143,Sandwich,Fried Egg Bánh Mì (Bánh mì ốp la),3.7,"Baguette, sunny-side-up eggs, soy sauce, pepper",350 - 450,Breakfast,Nationwide
+144,Noodle Soup,Seafood Pho (Phở hải sản),4.2,"Rice noodles, shrimp, squid, clams, seafood broth",350 - 450,Breakfast / Lunch,Coastal Regions
+145,Snack,Fried Shrimp Cake (Bánh cống),,"Rice/mung bean flour batter, shrimp, minced pork (deep-fried cup shape)",250 - 350 (per cake),Snack / Dinner,Soc Trang
+146,Stir-fry,Crab Meat and Glass Noodle Stir-Fry (Miến xào cua),,"Glass noodles, crab meat, wood ear mushroom, veggies",400 - 500,Lunch / Dinner,Nationwide
+147,Porridge,Vietnamese Duck Porridge (Chao vit),,"Rice porridge, ginger fish sauce, duck salad side dish",300 - 450,Dinner / Late Night,Nationwide
+148,Side Dish,Vietnamese Fermented Shrimp (Mắm tôm chua),,"Shrimp fermented with galangal, garlic, chili, alcohol",30 - 50 (condiment),Side (with boiled pork),Hue
+149,Salad,Vietnamese Jellyfish Salad (Gỏi sứa),,"Jellyfish, green mango, carrot, herbs, peanuts",100 - 150,Appetizer,Coastal Regions
+150,Noodle Soup,Sour Pho (Phở chua),,"Rice noodles, roast duck/pork, peanuts, sour tamarind sauce",500 - 600,Breakfast / Lunch,Lang Son
+151,Street Food,Steamed Wet Cake with Chicken and Innards (Bánh ướt lòng gà),,"Steamed rice sheets, shredded chicken, chicken heart/liver, herbs, fish sauce",400 - 500,Breakfast / Lunch,Dalat (Lam Dong)
+152,Salad,Vietnamese Raw Herring Salad (Gỏi cá trích),,"Fresh raw herring, grated coconut, onion, herbs, rice paper",200 - 300,Lunch / Dinner,Phu Quoc / Kien Giang
+153,Porridge,Vietnamese Rice Porridge with Chicken (Chao ga),,"Rice, chicken broth, shredded chicken, ginger, scallions",300 - 400,Breakfast / Late Night,Nationwide
+154,Freshwater Fish Dish,Deep-Fried Elephant Ear Fish (Cá tai tượng chiên xù),,"Whole Giant Gourami fish (deep-fried scales on), rice paper, tamarind sauce",300 - 400 (meat),Main Course,Mekong Delta (Vinh Long)
+155,Duck Dish,Raw Duck Blood Pudding (Tiet canh vit),,"Fresh duck blood, minced duck neck meat/cartilage, herbs, peanuts",100 - 150,Breakfast / Lunch,Nationwide
+156,Rice Dish,Tam Ky Chicken Rice (Cơm gà Tam Kỳ),,"Rice cooked in chicken fat/turmeric, boiled chicken, laksa leaves",600 - 700,Lunch,Quang Nam
+157,Noodle Dish,Vietnamese Dry Noodles (Hủ tiếu khô),,"Chewy tapioca/rice noodles, minced pork, shrimp, broth served on side",400 - 500,Breakfast / Dinner,Southern Vietnam (Sa Dec / Nam Vang)
+158,Snail Dish,Sea Snails in Coconut Milk (Ốc len xào dừa),3.7,"Mud creeper snails, coconut milk, lemongrass, coriander",300 - 400,Snack / Dinner,Ca Mau / Mekong Delta
+159,Pork Dish,Vietnamese Marinated Roasted Pork Loin (Khau nhuc),,"Pork belly, spices (star anise, cinnamon), dried mustard greens (steamed long)",600 - 800,Main / Festive,Lang Son (Tay/Nung people)
+160,Sandwich,Pork Sausage Bánh Mì (Bánh mì chả lụa),,"Baguette, Vietnamese pork roll (ch? l?a), cucumber, soy sauce",350 - 450,Breakfast,Nationwide
+161,Dessert,Xôi lá dứa,,"Glutinous rice, pandan leaf extract, coconut milk, sesame",300 - 400,Breakfast,Nationwide
+162,Cake,Steamed Vietnamese Banana Cake (Bánh chuối hấp),,"Ripe bananas, tapioca starch, thick coconut cream sauce, sesame",200 - 300,Dessert / Snack,Southern Vietnam
+163,Dumplings,Vietnamese Sticky Rice Dumplings (Bánh ít trần),,"Glutinous rice dough, mung bean/pork/shrimp filling (steamed without leaf)",250 - 300,Snack / Appetizer,Hue / Central Vietnam
+164,Offal Dish,Vietnamese Offal Stew (Phá lấu),,"Bovine/Pork offal, coconut water, curry powder, baguette or noodles",300 - 400,Snack / Late Night,Ho Chi Minh City
+165,Pork Dish,Vietnamese Fermented Pork (Nem phùng),,"Pork skin, lean meat, roasted rice powder (th�nh), fig leaves",150 - 200,Snack (Beer),Hanoi (Dan Phuong)
+166,Noodle Soup,Vietnamese Noodle Soup with Pork and Shrimp (Hủ tiếu Mỹ Tho),,"Chewy clear glass noodles, pork, shrimp, squid, minced pork",400 - 500,Breakfast,Tien Giang
+167,Sandwich,Sardine Bánh Mì (Bánh mì cá mòi),,"Baguette, canned sardines in tomato sauce, cucumber, cilantro",350 - 450,Breakfast,Nationwide
+168,Chicken Soup,Black Chicken Hotpot (Lẩu gà đen),,"Black chicken (Silkie), local herbs, mushrooms, broth",500 - 600,Dinner,Sapa / Northwest
+169,Chicken Soup,Double-boiled black chicken soup (Gà bạn đen hầm thuốc bắc),,"Black chicken, Chinese herbal medicine (goji, jujube, angelica)",300 - 400,Dinner / Health,Sapa / Nationwide
+170,Goat Dish,Boiled Goat Meat with Lemon Juice (De tai chanh),,"Goat meat (lightly poached), lime juice, lemongrass, ginger, sesame",200 - 250,Main / Beer Snack,Ninh Binh
+171,Fried Chicken Dish,No Escape Chicken (Đùi gà bó xôi),,"Whole chicken encased in sticky rice shell, deep-fried",600 - 800,Main / Party,Nationwide
+172,Snack,Shredded Pork Rice Paper Rolls (Bì cuốn),,"Rice paper, shredded pork skin (b�), roasted rice powder, lettuce",100 - 150,Appetizer,Southern Vietnam
+173,Porridge,Vietnamese Beef Porridge (Cháo bò),,"Rice porridge, ground beef or beef blood cubes, ginger",300 - 400,Breakfast / Dinner,Nationwide
+174,Stir-fry,Sweet Snails (Ốc hương),,"Babylonia areolata snails (steamed, grilled, or stir-fried with salted egg)",100 - 150,Snack / Seafood,Coastal Regions
+175,Salad,Hue Fig Salad (Va tron),,"Steamed green figs, shrimp, pork, sesame rice crackers",150 - 200,Appetizer,Hue
+176,Fish Soup,Ca Linh Fish and River Hemp Flower Hot Pot (Lẩu cá linh bông điên điển),,"Siamese mud carp, river hemp flowers (yellow), sour broth",400 - 500,Lunch / Dinner,Mekong Delta (Flood Season)
+177,Soup,Rainbow Trout and Sturgeon Hot Pot (Lẩu cá tầm cá hồi),,"Sturgeon or Salmon, sour bamboo shoots, pineapple, celery",500 - 600,Dinner,Sapa / Dalat
+178,Seafood Soup,Vietnamese Seafood Hot Pot (Lẩu do bien),,"Shrimp, squid, clams, fish, spicy and sour broth",400 - 500,Dinner,Coastal Regions
+179,Soup,Fermented Fish Hot Pot (Lẩu mắm Châu Đốc),,"Fermented fish paste broth (M?m), eggplant, roast pork, seafood, water lilies",500 - 600,Dinner,Chau Doc / Mekong Delta
+180,Dessert,Coconut Pandan Waffles (Bánh kẹp lá dứa),,"Flour, coconut milk, pandan, egg (waffle mold)",200 - 250,Snack,Southern Vietnam
+181,Freshwater Fish Dish,Grilled Freshwater Mountain Fish (Pa pỉnh tộp),,"Stream fish, stuffed with herbs/mac khen seeds, grilled folded",200 - 300,Main Course,Northwest (Thai People)
+182,Pork Dish,Sapa Black Pork Skewers (Thit lon nuong muoi vung),,"Local pork, wild spices, sesame salt",300 - 400,Snack / Dinner,Sapa
+183,Beef Dish,Grilled Beef in Fresh Bamboo (Bò nướng ống tre),,"Beef strips, lemongrass, spices stuffed in bamboo tube",250 - 350,Main Course,Central Highlands
+184,Noodle Soup,Smooth Rice Noodle Soup with Fish (Bún cá Long Xuyên),,"Vermicelli, snakehead fish, turmeric, yellow flowers (?i�n ?i?n)",350 - 450,Breakfast,An Giang
+185,Game Dish,Rice Field Mouse Roasted in a Vase (Chuột đồng quay lu),,"Rice field mouse, spices, roasted in ceramic jar",200 - 300,Main / Exotic,Mekong Delta
+186,Rice Dish,Coconut Steamed Rice with Baby Shrimp (Cơm dừa tép rang),,"Rice cooked in coconut shell, savory roasted baby shrimp",500 - 600,Lunch,Ben Tre
+187,Noodle Dish,Da Nang-Style Rice Noodles with Fermented Fish Sauce and Pork (Bún mắm Da Nang),,"Vermicelli, boiled pork/roasted pork, fermented anchovy sauce (dry mixed)",400 - 500,Lunch,Da Nang
+188,Vegan Dish,Tofu in Tomato-Pepper Sauce (Đậu hũ sốt cà),,"Fried tofu, fresh tomato sauce, scallions",200 - 300,Main Course,Nationwide
+189,Salad,Banana Blossom Salad (Nộm hoa chuối),,"Banana blossom strips, chicken/pig ear, peanuts, herbs",100 - 150,Appetizer,Nationwide
+190,Appetizer,Deep-Fried Pumpkin Flowers (Bông bí chiên giòn),,"Pumpkin flowers, tempura batter",150 - 200,Side Dish,Nationwide
+191,Snack,Sapa Chestnut Cake (Bánh hạt dẻ),,"Flour crust, mashed chestnut filling, grilled on griddle",200 - 300,Snack,Sapa
+192,Snail Dish,Mountain Snails with Lemongrass and Ginger (Oc luoc xa),,"Freshwater snails, lemongrass, lime leaves, ginger dipping sauce",50 - 100,Snack,Northern Vietnam
+193,Sandwich,Head Cheese Banh Mi (Bánh mì giò thủ),,"Baguette, Vietnamese head cheese (ear/snout/mushroom), cucumber",400 - 500,Breakfast,Nationwide
+194,Salad,Vietnamese Raw Fish Salad (Gỏi cá mai),,"White sardine (C� mai), lime, peanuts, sesame, herbs",150 - 200,Appetizer,Ninh Thuan / Vung Tau
+195,Noodle Soup,Rice Noodle Soup with Baby Clams in Coconut Broth (Bánh canh hến nước cốt dừa),,"Thick tapioca noodles, baby clams, coconut milk broth",450 - 550,Breakfast,Ben Tre
+196,Egg Dish,Bitter Melon with Eggs (Mướp xào trứng),,"Sponge gourd (Luffa), eggs, garlic (stir-fried)",150 - 200,Main Course,Nationwide
+197,Noodle Dish,Que Son Tapioca Noodle in Spicy Sauce (Phở sắn Quế Sơn trộn sốt cay),,"Cassava flour net-noodles, banana blossom, tuna/pork sauce (spicy)",350 - 450,Breakfast / Lunch,Quang Nam (Que Son)
+198,Stir-fry,Chayote Squash and Garlic Stir-Fry (Quả su su xào tỏi),,"Chayote squash tops/fruit, garlic, oil",100 - 150,Side Dish,Tam Dao / Sapa
+199,Stir-fry,Preserved Mustard Greens with Smoked Pork Belly (Cải mèo xào thịt lợn gác bếp),,"Bitter mustard greens (C?i m�o), smoked pork belly, ginger",250 - 350,Main Course,Northwest / Sapa

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, Save, X, Clock, User, ExternalLink, ChefHat } from 'lucide-react';
 import { Recipes, FoodAPI } from '../api';
+import './RecipeManagement.css';
 
 const RecipeManagementPage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -268,11 +269,6 @@ const RecipeManagementPage = () => {
 
   return (
     <div className="page-container">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Quản lý công thức</h1>
-        <p className="dashboard-subtitle">Quản lý công thức nấu ăn và hướng dẫn</p>
-      </div>
-      
       <div className="dashboard-content">
         {error && (
         <div className="alert alert-error">

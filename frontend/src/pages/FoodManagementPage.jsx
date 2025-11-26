@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, Save, X } from 'lucide-react';
 import { FoodAPI, Categories, FoodImages, Nutrition, Recipes, Regions } from '../api';
 import axios from 'axios'; // Giữ lại để fallback
+import './FoodManagement.css';
 
 const FoodManagementPage = () => {
   const [foods, setFoods] = useState([]); // start empty, load from backend
@@ -503,11 +504,6 @@ const FoodManagementPage = () => {
 
   return (
     <div className="food-management-page">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Quản lý món ăn</h1>
-        <p className="dashboard-subtitle">Thêm, sửa, xóa thông tin món đặc sản</p>
-      </div>
-      
       <div className="dashboard-content">
         {/* Search Controls */}
         <div className="search-controls-card">

@@ -6,11 +6,6 @@ import BarChartComponent from '../components/charts/BarChart';
 const ChartsPage = () => {
   return (
     <div className="charts-page">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Thống kê</h1>
-        <p className="dashboard-subtitle">Biểu đồ và phân tích dữ liệu hệ thống</p>
-      </div>
-      
       <div className="dashboard-content">
         <div className="dashboard-cards">
           <div className="dashboard-card">

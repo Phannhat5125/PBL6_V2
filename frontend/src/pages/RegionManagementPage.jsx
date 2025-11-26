@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, Save, X, Image, MapPin, Filter } from 'lucide-react';
 import { Regions } from '../api';
+import './RegionManagement.css';
 
 const RegionManagementPage = () => {
   const [regions, setRegions] = useState([]);
@@ -201,11 +202,6 @@ const RegionManagementPage = () => {
 
   return (
     <div className="page-container">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Quản lý vùng miền</h1>
-        <p className="dashboard-subtitle">Quản lý danh sách các tỉnh thành theo Miền Bắc - Miền Trung - Miền Nam</p>
-      </div>
-      
       <div className="dashboard-content">
         {error && (
           <div className="alert alert-error">

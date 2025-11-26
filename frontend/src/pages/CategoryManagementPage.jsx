@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, Save, X, Image } from 'lucide-react';
 import { Categories, FoodAPI } from '../api';
+import './CategoryManagement.css';
 
 const CategoryManagementPage = () => {
   const [categories, setCategories] = useState([]);
@@ -214,11 +215,6 @@ const CategoryManagementPage = () => {
 
   return (
     <div className="category-management-page">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Quản lý danh mục món ăn</h1>
-        <p className="dashboard-subtitle">Quản lý nhóm món: món bánh, món xào, món canh,...</p>
-      </div>
-      
       <div className="dashboard-content">
         {/* Search and Filter Controls */}
         <div className="search-controls-card">

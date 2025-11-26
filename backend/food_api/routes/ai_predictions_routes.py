@@ -11,6 +11,9 @@ def _get_payload():
     return data or {}
 
 
+# ================================
+# GET LIST
+# ================================
 @ai_predictions_bp.route('/ai_predictions', methods=['GET'])
 def list_predictions():
     try:
@@ -19,28 +22,33 @@ def list_predictions():
         user_id = request.args.get('user_id')
         predicted_food_id = request.args.get('predicted_food_id')
 
-        if user_id is not None:
+        # filter by user
+        if user_id:
             try:
                 uid = int(user_id)
                 data = model.get_by_user(uid, limit=limit, offset=offset)
-            except Exception:
+            except:
                 data = []
         else:
             data = model.get_all(limit=limit, offset=offset)
 
-        # apply simple in-memory filter for predicted_food_id if provided
-        if predicted_food_id is not None:
+        # optional filter by predicted_food_id
+        if predicted_food_id:
             try:
                 pfid = int(predicted_food_id)
                 data = [d for d in data if d.get('predicted_food_id') == pfid]
-            except Exception:
+            except:
                 pass
 
         return jsonify(data), 200
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 
+# ================================
+# GET ONE
+# ================================
 @ai_predictions_bp.route('/ai_predictions/<int:prediction_id>', methods=['GET'])
 def get_prediction(prediction_id):
     try:
@@ -52,45 +60,60 @@ def get_prediction(prediction_id):
         return jsonify({'error': str(e)}), 500
 
 
+# ================================
+# CREATE (POST)
+# ================================
 @ai_predictions_bp.route('/ai_predictions', methods=['POST'])
 def create_prediction():
     try:
         data = _get_payload()
-        # `user_id` is recommended but not strictly required depending on app flow
+
+        # user_id
         if 'user_id' in data:
             try:
                 data['user_id'] = int(data['user_id'])
-            except Exception:
+            except:
                 data['user_id'] = None
 
+        # predicted_food_id
         if 'predicted_food_id' in data:
             try:
                 data['predicted_food_id'] = int(data['predicted_food_id'])
-            except Exception:
+            except:
                 data['predicted_food_id'] = None
 
+        # confidence_score
         if 'confidence_score' in data:
             try:
                 data['confidence_score'] = float(data['confidence_score'])
-            except Exception:
+            except:
                 data['confidence_score'] = None
 
-        # uploaded_image may be a base64 string; model will decode it
+        # uploaded_image: giữ nguyên URL
+        # raw_prediction_data: giữ nguyên JSON string
+
         new_id = model.create(data)
         return jsonify({'message': 'Tạo prediction thành công', 'prediction_id': new_id}), 201
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 
+# ================================
+# DELETE
+# ================================
 @ai_predictions_bp.route('/ai_predictions/<int:prediction_id>', methods=['DELETE'])
 def delete_prediction(prediction_id):
     try:
         existing = model.get_by_id(prediction_id)
         if not existing:
             return jsonify({'message': 'Không tìm thấy prediction'}), 404
+
         ok = model.delete(prediction_id)
+
         if ok:
             return jsonify({'message': 'Xóa prediction thành công'}), 200
         return jsonify({'error': 'Không thể xóa'}), 500
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500

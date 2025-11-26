@@ -206,11 +206,6 @@ const DatasetPage = () => {
 
   return (
     <div className="dataset-page">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Bộ dữ liệu AI</h1>
-        <p className="dashboard-subtitle">Quản lý ảnh dùng để huấn luyện mô hình nhận diện món ăn</p>
-      </div>
-      
       <div className="dashboard-content">
         {/* Statistics Cards */}
         <div className="stats-grid">

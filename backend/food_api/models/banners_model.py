@@ -1,120 +1,102 @@
 import mysql.connector
 from config import db_config
 from datetime import datetime
-import base64
 
-
+# ===== FIX QUAN TRỌNG: HÀM CONNECT DB =====
 def get_connection():
     return mysql.connector.connect(**db_config)
 
 
-def get_all(limit: int = 100, offset: int = 0, only_active: bool = False):
-    conn = get_connection()
-    cur = conn.cursor(dictionary=True)
-    if only_active:
-        cur.execute("SELECT banner_id, image, is_active, created_at FROM banners WHERE is_active=1 ORDER BY banner_id DESC LIMIT %s OFFSET %s", (limit, offset))
-    else:
-        cur.execute("SELECT banner_id, image, is_active, created_at FROM banners ORDER BY banner_id DESC LIMIT %s OFFSET %s", (limit, offset))
-    rows = cur.fetchall()
-    for r in rows:
-        img = r.get('image')
-        if img is not None:
-            try:
-                r['image'] = base64.b64encode(img).decode('ascii')
-            except Exception:
-                r['image'] = None
-    cur.close(); conn.close()
-    return rows
+class BannersModel:
 
+    @staticmethod
+    def get_all(limit=100, offset=0, only_active=False):
+        conn = get_connection()
+        cur = conn.cursor(dictionary=True)
 
-def get_by_id(banner_id: int):
-    conn = get_connection()
-    cur = conn.cursor(dictionary=True)
-    cur.execute("SELECT banner_id, image, is_active, created_at FROM banners WHERE banner_id=%s", (banner_id,))
-    row = cur.fetchone()
-    if row and row.get('image') is not None:
-        try:
-            row['image'] = base64.b64encode(row['image']).decode('ascii')
-        except Exception:
-            row['image'] = None
-    cur.close(); conn.close()
-    return row
-
-
-def create(data: dict):
-    """Create banner. data keys: image (base64 string or bytes), is_active (0/1 optional)"""
-    conn = get_connection()
-    cur = conn.cursor()
-
-    img = data.get('image')
-    if isinstance(img, str):
-        try:
-            img_bytes = base64.b64decode(img)
-        except Exception:
-            img_bytes = None
-    else:
-        img_bytes = img
-
-    is_active = data.get('is_active', 1)
-    try:
-        is_active = int(is_active)
-    except Exception:
-        is_active = 1
-
-    sql = "INSERT INTO banners (image, is_active, created_at) VALUES (%s, %s, %s)"
-    vals = (img_bytes, is_active, datetime.utcnow())
-    cur.execute(sql, vals)
-    conn.commit()
-    new_id = cur.lastrowid
-    cur.close(); conn.close()
-    return new_id
-
-
-def update(banner_id: int, data: dict):
-    """Update banner image or is_active."""
-    conn = get_connection()
-    cur = conn.cursor()
-    fields = []
-    vals = []
-
-    if 'image' in data:
-        img = data.get('image')
-        if isinstance(img, str):
-            try:
-                img_bytes = base64.b64decode(img)
-            except Exception:
-                img_bytes = None
+        if only_active:
+            sql = "SELECT * FROM banners WHERE is_active = 1 ORDER BY banner_id DESC LIMIT %s OFFSET %s"
+            cur.execute(sql, (limit, offset))
         else:
-            img_bytes = img
-        fields.append('image=%s')
-        vals.append(img_bytes)
+            sql = "SELECT * FROM banners ORDER BY banner_id DESC LIMIT %s OFFSET %s"
+            cur.execute(sql, (limit, offset))
 
-    if 'is_active' in data:
-        try:
-            is_active = int(data.get('is_active'))
-        except Exception:
-            is_active = 1
-        fields.append('is_active=%s')
-        vals.append(is_active)
+        rows = cur.fetchall()
 
-    if not fields:
-        cur.close(); conn.close()
-        return False
-
-    sql = "UPDATE banners SET " + ", ".join(fields) + " WHERE banner_id=%s"
-    vals.append(banner_id)
-    cur.execute(sql, tuple(vals))
-    conn.commit()
-    changed = cur.rowcount
-    cur.close(); conn.close()
-    return changed > 0
+        cur.close()
+        conn.close()
+        return rows
 
 
-def delete(banner_id: int):
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute("DELETE FROM banners WHERE banner_id=%s", (banner_id,))
-    conn.commit()
-    changed = cur.rowcount
-    cur.close(); conn.close()
-    return changed > 0
+    @staticmethod
+    def get_by_id(banner_id):
+        conn = get_connection()
+        cur = conn.cursor(dictionary=True)
+
+        cur.execute("SELECT * FROM banners WHERE banner_id = %s", (banner_id,))
+        row = cur.fetchone()
+
+        cur.close()
+        conn.close()
+        return row
+
+
+    @staticmethod
+    def create(data):
+        conn = get_connection()
+        cur = conn.cursor()
+
+        sql = "INSERT INTO banners (image, is_active, created_at) VALUES (%s, %s, %s)"
+
+        cur.execute(sql, (
+            data['image'],                 # URL
+            data.get('is_active', 1),
+            datetime.utcnow()
+        ))
+
+        conn.commit()
+        banner_id = cur.lastrowid
+
+        cur.close()
+        conn.close()
+
+        return {
+            "banner_id": banner_id,
+            "image": data['image'],
+            "is_active": data.get('is_active', 1),
+            "created_at": datetime.utcnow().isoformat()
+        }
+
+
+    @staticmethod
+    def update(banner_id, data):
+        conn = get_connection()
+        cur = conn.cursor()
+
+        sql = "UPDATE banners SET image = %s, is_active = %s WHERE banner_id = %s"
+        cur.execute(sql, (
+            data['image'],
+            data.get('is_active', 1),
+            banner_id
+        ))
+
+        conn.commit()
+
+        cur.close()
+        conn.close()
+
+        return {"success": True}
+
+
+    @staticmethod
+    def delete(banner_id):
+        conn = get_connection()
+        cur = conn.cursor()
+
+        cur.execute("DELETE FROM banners WHERE banner_id = %s", (banner_id,))
+        conn.commit()
+
+        cur.close()
+        conn.close()
+
+        return {"success": True}

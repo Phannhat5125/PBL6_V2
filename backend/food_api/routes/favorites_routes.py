@@ -17,17 +17,17 @@ def list_favorites():
         user_id = request.args.get('user_id')
         limit = int(request.args.get('limit', 500))
         offset = int(request.args.get('offset', 0))
-        if user_id is not None:
-            try:
-                uid = int(user_id)
-                data = model.get_by_user(uid, limit=limit, offset=offset)
-            except Exception:
-                return jsonify({'error': 'user_id không hợp lệ'}), 400
+
+        if user_id:
+            uid = int(user_id)
+            data = model.get_by_user(uid, limit=limit, offset=offset)
         else:
             data = model.get_all(limit=limit, offset=offset)
+
         return jsonify(data), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+
+    except:
+        return jsonify({'error': 'Tham số không hợp lệ'}), 400
 
 
 @favorites_bp.route('/favorites', methods=['POST'])
@@ -36,32 +36,31 @@ def add_favorite():
         data = _get_payload()
         if 'user_id' not in data or 'food_id' not in data:
             return jsonify({'error': 'Thiếu user_id hoặc food_id'}), 400
-        try:
-            uid = int(data.get('user_id'))
-            fid = int(data.get('food_id'))
-        except Exception:
-            return jsonify({'error': 'user_id và food_id phải là số nguyên'}), 400
+
+        uid = int(data['user_id'])
+        fid = int(data['food_id'])
 
         result = model.create(uid, fid)
-        # result is {'created': bool, 'favorited_at': datetime}
-        fav_ts = result.get('favorited_at')
-        fav_str = fav_ts.isoformat() if hasattr(fav_ts, 'isoformat') else fav_ts
-        if result.get('created'):
-            return jsonify({'message': 'Đã thêm vào favorites', 'favorited_at': fav_str}), 201
-        return jsonify({'message': 'Đã tồn tại trong favorites', 'favorited_at': fav_str}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        ts = result['favorited_at']
+
+        return jsonify({
+            'message': 'Đã thêm' if result['created'] else 'Đã tồn tại',
+            'favorited_at': ts.isoformat()
+        }), 201 if result['created'] else 200
+
+    except:
+        return jsonify({'error': 'Dữ liệu không hợp lệ'}), 400
 
 
 @favorites_bp.route('/favorites/<int:user_id>/<int:food_id>', methods=['DELETE'])
 def remove_favorite(user_id, food_id):
-    try:
-        existed = model.is_favorited(user_id, food_id)
-        if not existed:
-            return jsonify({'message': 'Không tìm thấy favorite'}), 404
-        ok = model.delete(user_id, food_id)
-        if ok:
-            return jsonify({'message': 'Đã xóa favorite'}), 200
+    existed = model.is_favorited(user_id, food_id)
+    if not existed:
+        return jsonify({'message': 'Không tìm thấy favorite'}), 404
+
+    ok = model.delete(user_id, food_id)
+
+    if ok:
+        return jsonify({'message': 'Đã xóa favorite'}), 200
+    else:
         return jsonify({'error': 'Không thể xóa'}), 500
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500

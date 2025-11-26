@@ -5,6 +5,7 @@ import {
   CheckCircle, XCircle, Calendar, User 
 } from 'lucide-react';
 import { Users } from '../api';
+import './UserManagement.css';
 
 const UserManagementPage = () => {
   const [users, setUsers] = useState([]);
@@ -165,11 +166,6 @@ const UserManagementPage = () => {
 
   return (
     <div className="user-management-page">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Quản lý người dùng</h1>
-        <p className="dashboard-subtitle">Quản lý tài khoản người dùng và phân quyền hệ thống</p>
-      </div>
-      
       <div className="dashboard-content">
       {/* Search Controls */}
       <div className="search-controls-card">

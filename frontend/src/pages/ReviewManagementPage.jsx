@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Plus, Search, Edit2, Trash2, Save, X, Star, User, MessageSquare, Calendar, Filter } from 'lucide-react';
 import { FoodAPI } from '../api';
+import './ReviewManagement.css';
 
 const ReviewManagementPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -196,11 +197,6 @@ const ReviewManagementPage = () => {
 
   return (
     <div className="page-container">
-      <div className="dashboard-header">
-        <h1 className="dashboard-title">Quản lý tương tác</h1>
-        <p className="dashboard-subtitle">Quản lý đánh giá và bình luận của người dùng về món ăn</p>
-      </div>
-      
       <div className="dashboard-content">
         {error && (
           <div className="alert alert-error">
